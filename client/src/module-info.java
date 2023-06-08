@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author HAIZUKA
- *
- */
-module client {
-}
