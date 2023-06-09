@@ -203,6 +203,15 @@ public class BoadGameGUI extends JFrame {
 		setResizable(false);
 		setVisible(true);
 	}
+
+	public void setBoardFormArray(int board[][]) {
+		this.board = board.clone();
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				this.buttons[i][j].setIcon(getIcon(board[i][j]));
+			}
+		}
+	}
 	
 	public void updateRanking() {
 		avata1.setIcon(getAvata(1));
@@ -225,5 +234,9 @@ public class BoadGameGUI extends JFrame {
 		Image image = new ImageIcon(getClass().getResource("/images/avatas/" + index + ".png")).getImage();
 		Icon icon = new ImageIcon(image.getScaledInstance(width, height, image.SCALE_SMOOTH));
 		return icon;
+	}
+
+	public int [][] getBoard() {
+		return board;
 	}
 }

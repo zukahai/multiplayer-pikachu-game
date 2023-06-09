@@ -1,6 +1,8 @@
 package models;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class PlayerThread extends Thread{
@@ -13,18 +15,37 @@ public class PlayerThread extends Thread{
 	
 	public void run() {
 		while (true) {
-			try {
-				ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-				Object object = objectInputStream.readObject();
-				System.out.println(object instanceof User);
+			Object object = this.readObjectFromClient();
+			if (object instanceof User) {
 				User user = (User) object;
-				System.out.println("Read " + user);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(user);
 			}
-			
 		}
+	}
+
+	public void writeObjectToClient(Object object) {
+		try {
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
+			objectOutputStream.writeObject(object);
+			System.out.println("Send: " + object);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public Object readObjectFromClient() {
+		try {
+			ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
+			return objectInputStream.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

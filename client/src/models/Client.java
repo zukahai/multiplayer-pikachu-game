@@ -1,6 +1,7 @@
 package models;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
@@ -50,6 +51,30 @@ public class Client extends Thread {
 		}
 	}
 
+	public void writeObjectToServer(Object object) {
+		try {
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
+			objectOutputStream.writeObject(object);
+			System.out.println("Send: " + object);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public Object readObjectFromServer() {
+		try {
+			ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
+			return objectInputStream.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	
 	public static void main(String[] args) {
