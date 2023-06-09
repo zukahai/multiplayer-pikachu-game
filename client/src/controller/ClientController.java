@@ -10,6 +10,7 @@ import views.BoadGameGUI;
 public class ClientController {
     private BoadGameGUI gui;
     private Client client;
+    private int board[][];
 
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
@@ -18,6 +19,7 @@ public class ClientController {
     }
 
     public void init() {
+        this.board = this.gui.board;
         for (int i = 0; i < this.gui.Nrow; i++) {
             for (int j = 0; j < this.gui.Ncol; j++) {
                 this.gui.buttons[i][j].addActionListener(new ActionListener() {
@@ -31,6 +33,7 @@ public class ClientController {
             }
         }
     }
+
 
     public static void main(String[] args) {
         ClientController clientController = new ClientController("localhost");
