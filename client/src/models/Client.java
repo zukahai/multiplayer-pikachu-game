@@ -12,6 +12,8 @@ public class Client extends Thread {
 	private String host;
 	private int port;
 	Socket socket = new Socket();
+	private int board[][] = new int[9][16];
+	private Thread threadReadOject;
 	
 	public Client(String host, int port) {
 		this.host = host;
@@ -23,33 +25,15 @@ public class Client extends Thread {
 		try {
 			this.socket = new Socket(this.host, this.port);
 			System.out.println("Connect");
-			this.run();	
+			threadReadOject = new ThreadReadOject(this.socket);
+			threadReadOject.start();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void run() {
-		while(true) {
-			Scanner sc = new Scanner(System.in);
-			System.out.print("Enter username: ");
-			String userName = sc.nextLine();
-			System.out.print("Enter password: ");
-			String password = sc.nextLine();
-			User user = new User(userName, password);
-			
-			try {
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
-				objectOutputStream.writeObject(user);
-				System.out.println("Send: " + user);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-	}
+
 
 	public void writeObjectToServer(Object object) {
 		try {

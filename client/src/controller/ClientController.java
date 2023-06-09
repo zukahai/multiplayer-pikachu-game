@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import configs.Configs;
 import models.Client;
+import models.JoinRoom;
 import models.User;
 import views.BoadGameGUI;
 
@@ -16,8 +17,9 @@ public class ClientController {
 
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
-        this.init();
         this.client = new Client(host, Configs.SERVER_PORT);
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 2712));
+        this.init();
     }
 
     public void init() {
@@ -31,6 +33,7 @@ public class ClientController {
                     public void actionPerformed(ActionEvent e) {
                         // TODO Auto-generated method stub
                        System.out.println("Click: " + e.getActionCommand());
+                       client.writeObjectToServer(new JoinRoom(e.getActionCommand(), 222));
                     }
                 });
             }

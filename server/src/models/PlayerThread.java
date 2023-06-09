@@ -20,6 +20,10 @@ public class PlayerThread extends Thread{
 				User user = (User) object;
 				System.out.println(user);
 			}
+			if (object instanceof JoinRoom) {
+				JoinRoom joinRoom = (JoinRoom) object;
+				System.out.println(joinRoom);
+			}
 		}
 	}
 

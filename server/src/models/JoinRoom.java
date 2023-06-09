@@ -11,6 +11,13 @@ public class JoinRoom implements Serializable {
         this.roomID = roomID;
     }
 
+    public String toString() {
+        return "JoinRoom{" +
+                "content='" + content + '\'' +
+                ", roomID=" + roomID +
+                '}';
+    }
+
     public String getContent() {
         return content;
     }
