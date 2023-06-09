@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class UserService implements DAOInterface<User> {
 
-    private Connection connection = ConnectDatabase.getConnection();
+    private final Connection connection = ConnectDatabase.getConnection();
     // query create, findOne, findAll, update, delete, login, register
     private String[] columns = {"id", "name", "username", "password", "score", "id_avatar"};
-    private String table = "users";
+    private final String table = "users";
 
     public final String QUERY_CREATE = "INSERT INTO " + table + String.join(", ", columns) + " VALUES (?, ?, ?, ?, ?, ?)";
     public final String QUERY_FIND_ONE = "SELECT * FROM " + table + " WHERE id = ?";
@@ -86,7 +86,6 @@ public class UserService implements DAOInterface<User> {
     public User findOne(int id) {
         User user = new User();
         try {
-
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND_ONE);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
