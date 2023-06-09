@@ -53,5 +53,9 @@ public class Account implements Serializable{
 		this.score = score;
 	}
 	
+	public static void main(String[] args) {
+		System.out.println("aa");
+	}
+	
 	
 }

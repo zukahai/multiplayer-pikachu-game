@@ -22,6 +22,8 @@ public class Account implements Serializable{
 		this.score = score;
 	}
 	
+	
+
 	@Override
 	public String toString() {
 		return "Account [userName=" + userName + ", password=" + password + ", score=" + score + "]";
@@ -50,4 +52,10 @@ public class Account implements Serializable{
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println("aa");
+	}
+	
+	
 }

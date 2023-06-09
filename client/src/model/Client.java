@@ -46,8 +46,9 @@ public class Client extends Thread {
 		}
 	}
 
+
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Client client = new Client("localhost", 2712);
 		client.connect();
 		client.run();
