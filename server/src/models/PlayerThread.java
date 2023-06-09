@@ -1,6 +1,5 @@
 package models;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
@@ -16,7 +15,9 @@ public class PlayerThread extends Thread{
 		while (true) {
 			try {
 				ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-				User user = (User) objectInputStream.readObject();
+				Object object = objectInputStream.readObject();
+				System.out.println(object instanceof User);
+				User user = (User) object;
 				System.out.println("Read " + user);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
