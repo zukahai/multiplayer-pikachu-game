@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import configs.Configs;
+
 public class Client extends Thread {
 	private String host;
 	private int port;
@@ -13,12 +15,14 @@ public class Client extends Thread {
 	public Client(String host, int port) {
 		this.host = host;
 		this.port = port;
+		this.connect();
 	}
 	
 	public void connect() {
 		try {
 			this.socket = new Socket(this.host, this.port);
 			System.out.println("Connect");
+			this.run();	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,9 +53,7 @@ public class Client extends Thread {
 
 	
 	public static void main(String[] args) {
-		Client client = new Client("localhost", 2712);
-		client.connect();
-		client.run();
+		Client client = new Client("localhost", Configs.SERVER_PORT);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import configs.Configs;
 import utils.Util;
 
 public class Server extends Thread {
@@ -53,7 +54,7 @@ public class Server extends Thread {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Server server = new Server(2712);
+		Server server = new Server(Configs.SERVER_PORT);
 	}
 
 }
