@@ -21,7 +21,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class BoadGame extends JFrame {
+public class BoadGameGUI extends JFrame {
 
 	private JButton buttons[][] = new JButton[9][16];
 	private JPanel contentPane;
@@ -39,7 +39,7 @@ public class BoadGame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BoadGame frame = new BoadGame();
+					BoadGameGUI frame = new BoadGameGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class BoadGame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BoadGame() {
+	public BoadGameGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1039, 602);
 		contentPane = new JPanel();
@@ -198,6 +198,7 @@ public class BoadGame extends JFrame {
 		this.updateRanking();
 		
 		setLocationRelativeTo(null);
+		setResizable(false);
 	}
 	
 	public void updateRanking() {

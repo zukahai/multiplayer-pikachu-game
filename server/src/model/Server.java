@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import utils.Util;
+
 public class Server extends Thread {
 	private int port;
 	private ServerSocket serverSocket = null;
@@ -18,7 +20,7 @@ public class Server extends Thread {
 	public void init() {
 		try {
 			this.serverSocket = new ServerSocket(port);
-			System.out.println("Server start");
+			System.out.println("Server start: " + Util.getIPv4());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
