@@ -20,7 +20,7 @@ import java.awt.Font;
 
 public class BoadGameGUI extends JFrame {
 
-	private JButton buttons[][] = new JButton[9][16];
+	public JButton buttons[][] = new JButton[9][16];
 	private JPanel contentPane;
 	public JPanel boardPanel;
 	private JPanel rank1, rank2, rank3, rank4, rank5;
@@ -28,6 +28,8 @@ public class BoadGameGUI extends JFrame {
 	private JLabel score1, score2, score3, score4, score5;
 	private JButton avata1, avata2, avata3, avata4, avata5;
 	private JLabel room_id;
+	public int Nrow = 9;
+	public int Ncol = 16;
 
 	/**
 	 * Launch the application.
@@ -49,7 +51,6 @@ public class BoadGameGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public BoadGameGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1039, 602);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(224, 255, 255));
@@ -61,12 +62,13 @@ public class BoadGameGUI extends JFrame {
 		boardPanel = new JPanel();
 		boardPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		boardPanel.setLayout(new GridLayout(9, 16));
-		for (int i = 0; i < 9; i++)
-			for (int j = 0; j < 16; j++) {
+		for (int i = 0; i < Nrow; i++)
+			for (int j = 0; j < Ncol; j++) {
 				int index = ((int) Math.round(Math.random() * 999999)) % 36 + 1;
 				buttons[i][j] = new JButton();
 				buttons[i][j].setIcon(getIcon(index));
 				buttons[i][j].setBorder(null);
+				buttons[i][j].setActionCommand(i + " " + j);
 				boardPanel.add(buttons[i][j]);
 			}
 		boardPanel.setBounds(272, 34, 709, 462);
@@ -196,6 +198,7 @@ public class BoadGameGUI extends JFrame {
 		
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setVisible(true);
 	}
 	
 	public void updateRanking() {
