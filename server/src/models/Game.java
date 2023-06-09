@@ -1,7 +1,12 @@
 package models;
 
-public class Game {
+import java.io.Serializable;
+import java.net.Socket;
+import java.util.HashMap;
+
+public class Game implements Serializable{
     private int board[][];
+    HashMap <String, Socket> players = new HashMap<>();
 
     public Game() {
         this.initBoard();
@@ -19,6 +24,26 @@ public class Game {
             }
         }
         this.board = board;
+    }
+
+    public void addPlayer(String username, Socket socket) {
+        this.players.put(username, socket);
+    }
+
+    public void removePlayer(String username) {
+        this.players.remove(username);
+    }
+
+    int getNumberOfPlayers() {
+        return this.players.size();
+    }
+
+    public HashMap<String, Socket> getPlayers() {
+        return this.players;
+    }
+
+    public Socket getPlayer(String username) {
+        return this.players.get(username);
     }
 
     public int[][] getBoard() {
