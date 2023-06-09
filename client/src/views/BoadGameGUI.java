@@ -20,7 +20,7 @@ import java.awt.Font;
 
 public class BoadGameGUI extends JFrame {
 
-	public JButton buttons[][] = new JButton[9][16];
+	
 	private JPanel contentPane;
 	public JPanel boardPanel;
 	private JPanel rank1, rank2, rank3, rank4, rank5;
@@ -30,6 +30,8 @@ public class BoadGameGUI extends JFrame {
 	private JLabel room_id;
 	public int Nrow = 9;
 	public int Ncol = 16;
+	public JButton buttons[][] = new JButton[this.Nrow][this.Ncol];
+	public int board[][] = new int[this.Nrow][this.Ncol];
 
 	/**
 	 * Launch the application.
@@ -65,6 +67,7 @@ public class BoadGameGUI extends JFrame {
 		for (int i = 0; i < Nrow; i++)
 			for (int j = 0; j < Ncol; j++) {
 				int index = ((int) Math.round(Math.random() * 999999)) % 36 + 1;
+				this.board[i][j] = index;
 				buttons[i][j] = new JButton();
 				buttons[i][j].setIcon(getIcon(index));
 				buttons[i][j].setBorder(null);

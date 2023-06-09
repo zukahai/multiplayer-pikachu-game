@@ -2,24 +2,29 @@ package models;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable{
     private int id;
     private String name;
     private String username;
     private String password;
     private float score;
-    private int idAvatar;
+    private int id_avatar;
 
     public User() {
     }
 
-    public User(int id, String name, String username, String password, float score, int idAvatar) {
+    public User(int id, String name, String username, String password, float score, int id_avatar) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
         this.score = score;
-        this.idAvatar = idAvatar;
+        this.id_avatar = id_avatar;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -62,12 +67,12 @@ public class User implements Serializable {
         this.score = score;
     }
 
-    public int getIdAvatar() {
-        return idAvatar;
+    public int getId_avatar() {
+        return id_avatar;
     }
 
-    public void setIdAvatar(int idAvatar) {
-        this.idAvatar = idAvatar;
+    public void setId_avatar(int id_avatar) {
+        this.id_avatar = id_avatar;
     }
 
     @Override
@@ -78,7 +83,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", score=" + score +
-                ", idAvatar=" + idAvatar +
+                ", id_avatar=" + id_avatar +
                 '}';
     }
 }
