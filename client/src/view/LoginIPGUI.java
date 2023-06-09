@@ -16,11 +16,9 @@ import java.awt.Color;
 public class LoginIPGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	public JTextField ip_tf;
+	public JButton connect_bt;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,21 +50,22 @@ public class LoginIPGUI extends JFrame {
 		lblNewLabel.setBounds(164, 22, 105, 21);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(79, 54, 287, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		ip_tf = new JTextField();
+		ip_tf.setBounds(79, 54, 287, 32);
+		contentPane.add(ip_tf);
+		ip_tf.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Connect");
-		btnNewButton.setBackground(new Color(72, 209, 204));
-		btnNewButton.addActionListener(new ActionListener() {
+		connect_bt = new JButton("Connect");
+		connect_bt.setBackground(new Color(72, 209, 204));
+		connect_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(164, 97, 89, 23);
-		contentPane.add(btnNewButton);
+		connect_bt.setBounds(164, 97, 89, 23);
+		contentPane.add(connect_bt);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setVisible(true);
 	}
 
 }

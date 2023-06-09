@@ -1,7 +1,7 @@
-package utils;
+package service;
 
-import java.net.*;
-import java.util.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Util {
 	public static String getIPv4() {
