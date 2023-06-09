@@ -1,7 +1,10 @@
 package models;
 
+import java.sql.Connection;
+
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Chao cau");
+		Connection connection;
+		System.out.println("Chao ban");
 	}
 }
