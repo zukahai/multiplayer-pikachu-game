@@ -1,5 +1,0 @@
-INDEX VERSION 1.132+G:\Java\pikachu-game\.metadata\.plugins\org.eclipse.jdt.core
-2743554683.index
-262142283.index
-1865797976.index
-2461411560.index
