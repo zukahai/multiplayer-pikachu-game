@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.buildship.core" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/29" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/67" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/80" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/8a" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/c6" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/e7" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.history/fd" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.core.resources/.projects/client/org.eclipse.jdt.apt.core" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.emf.common.ui" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.oomph.setup.ui" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.pde.api.tools" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.pde.core/.p2" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.userstorage.oauth" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.common.modulecore" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.server.core" />
+      <excludeFolder url="file://$MODULE_DIR$/client/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/client/target/test-classes" />
+      <excludeFolder url="file://$MODULE_DIR$/server/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/server/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/server/target/test-classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
