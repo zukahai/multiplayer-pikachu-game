@@ -65,7 +65,7 @@ public class BoadGameGUI extends JFrame {
 			for (int j = 0; j < 16; j++) {
 				int index = ((int) Math.round(Math.random() * 999999)) % 36 + 1;
 				buttons[i][j] = new JButton();
-				buttons[i][j].setIcon(getIcon(index));
+//				buttons[i][j].setIcon(getIcon(index));
 				buttons[i][j].setBorder(null);
 				boardPanel.add(buttons[i][j]);
 			}
@@ -199,11 +199,11 @@ public class BoadGameGUI extends JFrame {
 	}
 	
 	public void updateRanking() {
-		avata1.setIcon(getAvata(1));
-		avata2.setIcon(getAvata(2));
-		avata3.setIcon(getAvata(3));
-		avata4.setIcon(getAvata(4));
-		avata5.setIcon(getAvata(5));
+//		avata1.setIcon(getAvata(1));
+//		avata2.setIcon(getAvata(2));
+//		avata3.setIcon(getAvata(3));
+//		avata4.setIcon(getAvata(4));
+//		avata5.setIcon(getAvata(5));
 	}
 	
 	public Icon getIcon(int index) {
