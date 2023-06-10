@@ -35,6 +35,9 @@ public class PlayerThread extends Thread{
 				this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
 				this.writeObjectToClient(this.socket, this.game);
 				Server.rooms[roomID].addPlayer(this.user, socket);
+
+				Server.score[roomID].put(this.user.getUsername(), 0);
+
 				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
 			}
 			if (object instanceof Step) {
@@ -58,6 +61,8 @@ public class PlayerThread extends Thread{
 					Util.printArray(step.getBoard());
 					this.sendAllSocketInRoom(step.getRoomID());
 					System.out.println("=============>> TRUE");
+					Server.score[roomID].put(this.user.getUsername(), Server.score[roomID].get(this.user.getUsername()) + 1);
+					System.out.println("Score: " + Server.score[roomID].get(this.user.getUsername()) + " Username: " + this.user.getUsername());
 				} else
 					System.out.println("=============>> FALSE");
 			}

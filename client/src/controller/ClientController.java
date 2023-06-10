@@ -29,7 +29,7 @@ public class ClientController extends Thread {
         this.gui = new BoadGameGUI();
         this.client = new Client(host, Configs.SERVER_PORT);
         this.client.writeObjectToServer(new User("Hai " + LocalTime.now().toString(), "Linh"));
-        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 1121));
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 68));
         this.init();
     }
 

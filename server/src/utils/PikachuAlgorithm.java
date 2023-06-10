@@ -29,8 +29,8 @@ public class PikachuAlgorithm {
             return true;
         if (PikachuAlgorithm.checkL(board, row1, col1, row2, col2))
             return true;
-        // if (PikachuAlgorithm.checkUZ(board, row1, col1, row2, col2))
-        //     return true;
+        if (PikachuAlgorithm.checkUZ(board, row1, col1, row2, col2))
+            return true;
         return false;
     }
 

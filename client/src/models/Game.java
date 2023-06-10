@@ -28,11 +28,10 @@ public class Game implements Serializable{
         int board[][] = new int[9][16];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 16; j++) {
-                board[i][j] = (int) (Math.round(Math.random() * 100000)) % 36 + 1;
+                board[i][j] = (int) (Math.round(Math.random() * 100000)) % 6 + 1;
             }
         }
-        board[3][4] = board[3][6] = 6;
-        board[3][5] = 0;
+       
         this.board = board;
     }
 
