@@ -12,6 +12,7 @@ public class PlayerThread extends Thread{
 
 	private Socket socket = null;
 	private User user = new User(LocalTime.now().toString(), "Guest");
+	private Game game = new Game(0);
 	
 	public PlayerThread(Socket socket) {
 		this.socket = socket;
@@ -23,29 +24,49 @@ public class PlayerThread extends Thread{
 			if (object instanceof User) {
 				User user = (User) object;
 				this.user = user;
-				this.writeObjectToClient(this.user);
+				this.writeObjectToClient(this.socket, this.user);
 				System.out.println("Login success");
 			}
 			if (object instanceof JoinRoom) {
 				JoinRoom joinRoom = (JoinRoom) object;
 				int roomID = joinRoom.getRoomID();
 				System.out.println(joinRoom);
-				Game game = new Game(Server.rooms[roomID].getBoard(), roomID);
-				this.writeObjectToClient(game);
+				this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
+				this.writeObjectToClient(this.socket, this.game);
 				Server.rooms[roomID].addPlayer(this.user, socket);
 				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
 			}
 			if (object instanceof Step) {
 				Step step = (Step) object;
 				System.out.println("Step: " +step);
+				int board[][] = step.getBoard();
+
+				// clear 2 point
+				int x1 = step.getPosition1().x;
+				int y1 = step.getPosition1().y;
+				int x2 = step.getPosition2().x;
+				int y2 = step.getPosition2().y;
+				board[x1][y1] = board[x2][y2] = 0;
+
+				// send game to all player
+				Server.rooms[step.getRoomID()].setBoard(board);
+				int roomID = step.getRoomID();
+				this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
 				Util.printArray(step.getBoard());
+				this.sendAllSocketInRoom(step.getRoomID());
 			}
 		}
 	}
 
-	public void writeObjectToClient(Object object) {
+	public void sendAllSocketInRoom(int roomID) {
+		for (Socket socket : Server.rooms[roomID].getSockets()) {
+			this.writeObjectToClient(socket, game);
+		}
+	}
+
+	public void writeObjectToClient(Socket socket, Object object) {
 		try {
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(object);
 			System.out.println("Send: " + object);
 		} catch (IOException e) {
