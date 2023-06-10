@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.time.LocalTime;
 
+import utils.Util;
+
 public class PlayerThread extends Thread{
 
 	private Socket socket = null;
@@ -36,6 +38,7 @@ public class PlayerThread extends Thread{
 			if (object instanceof Step) {
 				Step step = (Step) object;
 				System.out.println("Step: " +step);
+				Util.printArray(step.getBoard());
 			}
 		}
 	}

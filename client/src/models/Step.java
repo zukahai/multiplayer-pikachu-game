@@ -4,9 +4,13 @@ import java.awt.Point;
 import java.io.Serializable;
 
 public class Step implements Serializable {
+
     private Point position1, position2;
+
     private int board[][];
+
     private int roomID;
+    
     private User user;
 
     public Step() {

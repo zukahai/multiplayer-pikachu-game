@@ -8,10 +8,15 @@ import java.net.Socket;
 import configs.Configs;
 
 public class Client extends Thread {
+	
 	private String host;
+
 	private int port;
+
 	Socket socket = new Socket();
+
 	public int board[][] = new int[9][16];
+
 	private Thread threadReadOject;
 	
 	public Client(String host, int port) {

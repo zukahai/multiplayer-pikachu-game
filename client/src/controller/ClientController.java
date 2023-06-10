@@ -12,10 +12,15 @@ import models.User;
 import views.BoadGameGUI;
 
 public class ClientController extends Thread {
+
     private BoadGameGUI gui;
+
     private Client client;
+
     private int board[][] = new int[9][16];
+
     private Step step = new Step();
+
     private int indexStep = 1;
 
     public ClientController(String host) {
@@ -61,19 +66,10 @@ public class ClientController extends Thread {
             int room_id = this.client.getRoomID();
             this.step.setRoomID(room_id);
             this.step.setUser(this.client.getUser());
+            this.step.setBoard(board);
             
             this.gui.setBoardFormArray(this.board);
             this.gui.setRoomIDLable(room_id);
-        }
-    }
-
-    public void printArray(int arr[][]) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                // print 2 charact
-                System.out.printf("%2d   ", arr[i][j]);
-            }
-            System.out.println();
         }
     }
 

@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game implements Serializable{
@@ -31,6 +32,14 @@ public class Game implements Serializable{
             }
         }
         this.board = board;
+    }
+
+    public ArrayList<Socket> getSockets() {
+        ArrayList<Socket> sockets = new ArrayList<>();
+        for (User user : players.keySet()) {
+            sockets.add(players.get(user));
+        }
+        return sockets;
     }
 
     public void addPlayer(User user, Socket socket) {
@@ -64,5 +73,6 @@ public class Game implements Serializable{
     public int getRoomID() {
         return roomID;
     }
+
     
 }

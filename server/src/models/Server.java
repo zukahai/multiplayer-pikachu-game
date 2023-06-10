@@ -9,11 +9,17 @@ import configs.Configs;
 import utils.Util;
 
 public class Server extends Thread {
+
 	private int port;
+
 	private ServerSocket serverSocket = null;
+
 	private ArrayList<Socket> sockets = new ArrayList<>();
+
 	private ArrayList<PlayerThread> playerThreads = new ArrayList<>();
+
 	public static int Nroom = 10000;
+	
 	public static Game rooms[] = new Game[Nroom + 1];
 	
 	public Server(int port) {
