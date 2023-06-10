@@ -3,6 +3,7 @@ package controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 
 import configs.Configs;
 import models.Client;
@@ -26,8 +27,8 @@ public class ClientController extends Thread {
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
         this.client = new Client(host, Configs.SERVER_PORT);
-        this.client.writeObjectToServer(new User("Hai", "Linh"));
-        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 111));
+        this.client.writeObjectToServer(new User("Hai " + LocalTime.now().toString(), "Linh"));
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 1121));
         this.init();
     }
 

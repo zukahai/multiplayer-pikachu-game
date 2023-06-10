@@ -31,6 +31,8 @@ public class Game implements Serializable{
                 board[i][j] = (int) (Math.round(Math.random() * 100000)) % 36 + 1;
             }
         }
+        board[3][4] = board[3][6] = 6;
+        board[3][5] = 0;
         this.board = board;
     }
 

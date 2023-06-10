@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.time.LocalTime;
 
+import utils.PikachuAlgorithm;
 import utils.Util;
 
 public class PlayerThread extends Thread{
@@ -41,19 +42,24 @@ public class PlayerThread extends Thread{
 				System.out.println("Step: " +step);
 				int board[][] = step.getBoard();
 
-				// clear 2 point
-				int x1 = step.getPosition1().x;
-				int y1 = step.getPosition1().y;
-				int x2 = step.getPosition2().x;
-				int y2 = step.getPosition2().y;
-				board[x1][y1] = board[x2][y2] = 0;
+				//check step
+				if (PikachuAlgorithm.checkStep(board, step.getPosition1(), step.getPosition2())) {
+					// clear 2 point
+					int x1 = step.getPosition1().x;
+					int y1 = step.getPosition1().y;
+					int x2 = step.getPosition2().x;
+					int y2 = step.getPosition2().y;
+					board[x1][y1] = board[x2][y2] = 0;
 
-				// send game to all player
-				Server.rooms[step.getRoomID()].setBoard(board);
-				int roomID = step.getRoomID();
-				this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
-				Util.printArray(step.getBoard());
-				this.sendAllSocketInRoom(step.getRoomID());
+					// send game to all player
+					Server.rooms[step.getRoomID()].setBoard(board);
+					int roomID = step.getRoomID();
+					this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
+					Util.printArray(step.getBoard());
+					this.sendAllSocketInRoom(step.getRoomID());
+					System.out.println("=============>> TRUE");
+				} else
+					System.out.println("=============>> FALSE");
 			}
 		}
 	}

@@ -212,7 +212,7 @@ public class BoadGameGUI extends JFrame {
 					this.buttons[i][j].setIcon(getIcon(board[i][j]));
 				else {
 					this.buttons[i][j].setIcon(null);
-					this.buttons[i][j].setBackground(new Color(224, 255, 255));
+					this.buttons[i][j].setBackground(new Color(105, 105, 105));
 				}
 					
 		}
