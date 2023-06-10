@@ -1,14 +1,27 @@
 package models;
 
-public class Game {
-    private int board[][];
+import java.io.Serializable;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    public Game() {
+public class Game implements Serializable{
+    private int board[][];
+    private int roomID;
+    HashMap <User, Socket> players = new HashMap<>();
+
+    public Game(int roomID) {
+        this.roomID = roomID;
         this.initBoard();
     }
 
     public Game(int board[][]) {
         this.board = board;
+    }
+
+    public Game(int board[][], int roomID) {
+        this.board = board;
+        this.roomID = roomID;
     }
 
     void initBoard() {
@@ -21,6 +34,34 @@ public class Game {
         this.board = board;
     }
 
+    public ArrayList<Socket> getSockets() {
+        ArrayList<Socket> sockets = new ArrayList<>();
+        for (User user : players.keySet()) {
+            sockets.add(players.get(user));
+        }
+        return sockets;
+    }
+
+    public void addPlayer(User user, Socket socket) {
+        this.players.put(user, socket);
+    }
+
+    public void removePlayer(User user) {
+        this.players.remove(user);
+    }
+
+    int getNumberOfPlayers() {
+        return this.players.size();
+    }
+
+    public HashMap<User, Socket> getPlayers() {
+        return this.players;
+    }
+
+    public Socket getPlayer(String username) {
+        return this.players.get(username);
+    }
+
     public int[][] getBoard() {
         return board;
     }
@@ -28,5 +69,10 @@ public class Game {
     public void setBoard(int[][] board) {
         this.board = board;
     }
+
+    public int getRoomID() {
+        return roomID;
+    }
+
     
 }

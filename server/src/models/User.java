@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class User implements Serializable{
     private int id;
@@ -85,5 +86,28 @@ public class User implements Serializable{
                 ", score=" + score +
                 ", id_avatar=" + id_avatar +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return this.username == ((User) o).username;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.username.hashCode() * 27 + this.password.hashCode() * 12;
+    }
+
+    public static void main(String[] args) {
+        User user1 = new User("hai", "1");
+        User user2 = new User("hai", "1");
+        System.out.println(user1 == user2);;
+        HashMap<User, String> users = new HashMap<>();
+        users.put(user2, "a");
+        users.put(user1, "aaa");
+        System.out.println(user1.hashCode() + " " + user2.hashCode());
+        System.out.println(users.size());
     }
 }
