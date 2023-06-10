@@ -6,19 +6,19 @@ import java.awt.event.ActionListener;
 import configs.Configs;
 import models.Client;
 import models.JoinRoom;
-import models.User;
+import models.Step;
 import views.BoadGameGUI;
 
 public class ClientController extends Thread {
     private BoadGameGUI gui;
     private Client client;
     private int board[][] = new int[9][16];
-    private User user;
+    private Step step = new Step();
 
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
         this.client = new Client(host, Configs.SERVER_PORT);
-        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 222));
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 111));
         this.init();
     }
 

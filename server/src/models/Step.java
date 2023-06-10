@@ -1,23 +1,29 @@
 package models;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.io.Serializable;
 
 public class Step implements Serializable {
-    private Point2D position1, position2;
+    private Point position1, position2;
     private int board[][];
 
-    public Step(Point2D position1, Point2D position2, int board[][]) {
+    public Step() {
+        this.position1 = new Point(0, 0);
+        this.position2 = new Point(0, 0);
+        this.board = new int[9][16];
+    }
+
+    public Step(Point position1, Point position2, int board[][]) {
         this.position1 = position1;
         this.position2 = position2;
         this.board = board;
     }
 
-    public void setPosition1(Point2D position1) {
+    public void setPosition1(Point position1) {
         this.position1 = position1;
     }
 
-    public void setPosition2(Point2D position2) {
+    public void setPosition2(Point position2) {
         this.position2 = position2;
     }
 
@@ -25,16 +31,20 @@ public class Step implements Serializable {
         this.board = board;
     }
 
-    public Point2D getPosition1() {
+    public Point getPosition1() {
         return position1;
     }
 
-    public Point2D getPosition2() {
+    public Point getPosition2() {
         return position2;
     }
 
     public int[][] getBoard() {
         return board;
+    }
+
+    public static void main(String[] args) {
+        new Step();
     }
 
 
