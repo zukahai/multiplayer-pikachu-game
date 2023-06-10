@@ -9,7 +9,7 @@ import models.JoinRoom;
 import models.User;
 import views.BoadGameGUI;
 
-public class ClientController {
+public class ClientController extends Thread {
     private BoadGameGUI gui;
     private Client client;
     private int board[][] = new int[9][16];
@@ -23,8 +23,9 @@ public class ClientController {
     }
 
     public void init() {
-        this.board = this.gui.getBoard().clone();
+        this.board = this.client.getBoard();
         this.printArray(this.board);
+        this.gui.setBoardFormArray(this.board);
         for (int i = 0; i < this.gui.Nrow; i++) {
             for (int j = 0; j < this.gui.Ncol; j++) {
                 this.gui.buttons[i][j].addActionListener(new ActionListener() {
@@ -40,6 +41,13 @@ public class ClientController {
         }
     }
 
+    public void run() {
+        while(true) {
+            this.board = this.client.getBoard();
+            this.gui.setBoardFormArray(this.board);
+        }
+    }
+
     public void printArray(int arr[][]) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
@@ -52,6 +60,7 @@ public class ClientController {
 
     public static void main(String[] args) {
         ClientController clientController = new ClientController("localhost");
+        clientController.start();
     }
 
 }

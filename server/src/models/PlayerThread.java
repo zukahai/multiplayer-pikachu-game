@@ -23,6 +23,7 @@ public class PlayerThread extends Thread{
 			if (object instanceof JoinRoom) {
 				JoinRoom joinRoom = (JoinRoom) object;
 				System.out.println(joinRoom);
+				this.writeObjectToClient(new Game());
 			}
 		}
 	}

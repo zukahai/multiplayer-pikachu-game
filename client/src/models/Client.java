@@ -12,7 +12,7 @@ public class Client extends Thread {
 	private String host;
 	private int port;
 	Socket socket = new Socket();
-	private int board[][] = new int[9][16];
+	public int board[][] = new int[9][16];
 	private Thread threadReadOject;
 	
 	public Client(String host, int port) {
@@ -59,6 +59,10 @@ public class Client extends Thread {
 		}
 		return null;
 	}
+
+	 public int[][] getBoard() {
+        return ((ThreadReadOject)threadReadOject).getBoard().clone();
+    }
 
 	
 	public static void main(String[] args) {
