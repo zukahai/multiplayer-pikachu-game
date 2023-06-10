@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.LocalTime;
 
 public class PlayerThread extends Thread{
 
 	private Socket socket = null;
+	private User user = new User(LocalTime.now().toString(), "Guest");
 	
 	public PlayerThread(Socket socket) {
 		this.socket = socket;
@@ -18,12 +20,17 @@ public class PlayerThread extends Thread{
 			Object object = this.readObjectFromClient();
 			if (object instanceof User) {
 				User user = (User) object;
+				this.user = user;
 				System.out.println(user);
 			}
 			if (object instanceof JoinRoom) {
 				JoinRoom joinRoom = (JoinRoom) object;
+				int roomID = joinRoom.getRoomID();
 				System.out.println(joinRoom);
-				this.writeObjectToClient(new Game());
+				Game game = new Game(Server.rooms[roomID].getBoard());
+				this.writeObjectToClient(game);
+				Server.rooms[roomID].addPlayer(this.user, socket);
+				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
 			}
 		}
 	}
@@ -51,6 +58,10 @@ public class PlayerThread extends Thread{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

@@ -13,19 +13,22 @@ public class Server extends Thread {
 	private ServerSocket serverSocket = null;
 	private ArrayList<Socket> sockets = new ArrayList<>();
 	private ArrayList<PlayerThread> playerThreads = new ArrayList<>();
-	public int Nroom = 10000;
-	private Game rooms[] = new Game[Nroom + 1];
+	public static int Nroom = 10000;
+	public static Game rooms[] = new Game[Nroom + 1];
 	
 	public Server(int port) {
 		this.port = port;
 		this.init();
         this.run();
 	}
-	
-	public void init() {
+
+	static {
 		for (int i = 0; i <= Nroom; i++) {
 			rooms[i] = new Game();
 		}
+	}
+	
+	public void init() {
 		try {
 			this.serverSocket = new ServerSocket(port);
 			System.out.println("Server start: " + Util.getIPv4());

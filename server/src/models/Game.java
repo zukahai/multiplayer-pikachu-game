@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Game implements Serializable{
     private int board[][];
-    HashMap <String, Socket> players = new HashMap<>();
+    HashMap <User, Socket> players = new HashMap<>();
 
     public Game() {
         this.initBoard();
@@ -26,19 +26,19 @@ public class Game implements Serializable{
         this.board = board;
     }
 
-    public void addPlayer(String username, Socket socket) {
-        this.players.put(username, socket);
+    public void addPlayer(User user, Socket socket) {
+        this.players.put(user, socket);
     }
 
-    public void removePlayer(String username) {
-        this.players.remove(username);
+    public void removePlayer(User user) {
+        this.players.remove(user);
     }
 
     int getNumberOfPlayers() {
         return this.players.size();
     }
 
-    public HashMap<String, Socket> getPlayers() {
+    public HashMap<User, Socket> getPlayers() {
         return this.players;
     }
 

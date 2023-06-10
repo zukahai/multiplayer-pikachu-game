@@ -18,13 +18,12 @@ public class ClientController extends Thread {
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
         this.client = new Client(host, Configs.SERVER_PORT);
-        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 2712));
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 222));
         this.init();
     }
 
     public void init() {
         this.board = this.client.getBoard();
-        this.printArray(this.board);
         this.gui.setBoardFormArray(this.board);
         for (int i = 0; i < this.gui.Nrow; i++) {
             for (int j = 0; j < this.gui.Ncol; j++) {
