@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 import configs.Configs;
 
@@ -61,9 +60,20 @@ public class Client extends Thread {
 	}
 
 	 public int[][] getBoard() {
-        return ((ThreadReadOject)threadReadOject).getBoard().clone();
+		Game game = ((ThreadReadOject)threadReadOject).getGame();
+		int board[][] = game.getBoard().clone();
+        return board;
     }
 
+	public int getRoomID() {
+		Game game = ((ThreadReadOject)threadReadOject).getGame();
+		int roomID = game.getRoomID();
+		return roomID;
+	}
+
+	public User getUser() {
+		return ((ThreadReadOject)threadReadOject).getUser();
+	}
 	
 	public static void main(String[] args) {
 		Client client = new Client("localhost", Configs.SERVER_PORT);

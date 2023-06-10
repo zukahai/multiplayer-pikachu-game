@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ThreadReadOject extends Thread {
     private Socket socket = null;
     private int board[][] = new int[9][16];
+    public Game game = new Game(0);
+    private User user = new User("Guest", "Guest");
     
     public ThreadReadOject(Socket socket) {
         this.socket = socket;
@@ -23,9 +24,11 @@ public class ThreadReadOject extends Thread {
         while(true) {
             Object object = this.readObjectFromServer();
             if (object instanceof Game) {
-                Game game = (Game) object;
-                this.board = game.getBoard().clone();
+                this.game = (Game) object;
                 System.out.println("Game change");
+            }
+            if (object instanceof User) {
+                this.user = (User) object;
             }
         }
     }
@@ -55,7 +58,11 @@ public class ThreadReadOject extends Thread {
 		}
 	}
 
-    public int[][] getBoard() {
-        return this.board.clone();
+    public Game getGame() {
+        return this.game;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }

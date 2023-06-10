@@ -212,6 +212,11 @@ public class BoadGameGUI extends JFrame {
 			}
 		}
 	}
+
+	public void setRoomIDLable(int id) {
+		room_id.setText("Room ID: " + id);
+		this.setTitle("Pikachu - Room " + id);
+	}
 	
 	public void updateRanking() {
 		avata1.setIcon(getAvata(1));

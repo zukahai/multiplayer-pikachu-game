@@ -21,16 +21,21 @@ public class PlayerThread extends Thread{
 			if (object instanceof User) {
 				User user = (User) object;
 				this.user = user;
-				System.out.println(user);
+				this.writeObjectToClient(this.user);
+				System.out.println("Login success");
 			}
 			if (object instanceof JoinRoom) {
 				JoinRoom joinRoom = (JoinRoom) object;
 				int roomID = joinRoom.getRoomID();
 				System.out.println(joinRoom);
-				Game game = new Game(Server.rooms[roomID].getBoard());
+				Game game = new Game(Server.rooms[roomID].getBoard(), roomID);
 				this.writeObjectToClient(game);
 				Server.rooms[roomID].addPlayer(this.user, socket);
 				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
+			}
+			if (object instanceof Step) {
+				Step step = (Step) object;
+				System.out.println("Step: " +step);
 			}
 		}
 	}

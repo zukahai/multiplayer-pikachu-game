@@ -6,14 +6,21 @@ import java.util.HashMap;
 
 public class Game implements Serializable{
     private int board[][];
+    private int roomID;
     HashMap <User, Socket> players = new HashMap<>();
 
-    public Game() {
+    public Game(int roomID) {
+        this.roomID = roomID;
         this.initBoard();
     }
 
     public Game(int board[][]) {
         this.board = board;
+    }
+
+    public Game(int board[][], int roomID) {
+        this.board = board;
+        this.roomID = roomID;
     }
 
     void initBoard() {
@@ -52,6 +59,10 @@ public class Game implements Serializable{
 
     public void setBoard(int[][] board) {
         this.board = board;
+    }
+
+    public int getRoomID() {
+        return roomID;
     }
     
 }
