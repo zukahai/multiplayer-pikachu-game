@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalTime;
 
 import configs.Configs;
+import javafx.scene.layout.Border;
 import models.Client;
 import models.JoinRoom;
 import models.Step;
@@ -47,9 +48,11 @@ public class ClientController extends Thread {
                        switch (indexStep){
                            case 1:
                                step.setPosition1(point);
+                               gui.buttons[row][col].setEnabled(false);
                                break;
                            case 2:
                                step.setPosition2(point);
+                               gui.buttons[step.getPosition1().x][step.getPosition1().y].setEnabled(true);
                                client.writeObjectToServer(step);
                                break;
                        }
