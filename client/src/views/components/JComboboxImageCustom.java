@@ -11,6 +11,14 @@ public class JComboboxImageCustom<Icon> extends JComboBox<Icon> {
         this.setBorder(null);
         this.setFont(new Font("Arial", Font.BOLD, 15));
         this.setRenderer(new JComboboxImageCustomRenderer());
+
+    }
+
+    public void setImages(javax.swing.Icon[] icons) {
+        for (javax.swing.Icon icon : icons) {
+            this.addItem((Icon) icon);
+        }
+
     }
 }
 class JComboboxImageCustomRenderer extends DefaultListCellRenderer {

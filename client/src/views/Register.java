@@ -28,7 +28,7 @@ public class Register {
             getAvatar(5)
     };
 
-    public JComboboxImageCustom<String> roleCombobox;
+    public JComboboxImageCustom<String> avatarCombobox;
 
     public JPanel getContainer() {
         container = new JPanel();
@@ -41,9 +41,10 @@ public class Register {
         title.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         titlePanel.add(title, BorderLayout.NORTH);
         titlePanel.add(image, BorderLayout.SOUTH);
-        image.setIcon(getImage( "/images/assets/login.jpg", 150, 150));
+        image.setIcon(getImage( "/images/assets/login.jpg", 100, 100));
         image.setHorizontalAlignment(SwingConstants.CENTER);
         title.setHorizontalAlignment(SwingConstants.CENTER);
+
         title.setFont(new Font("Arial", Font.BOLD, 20));
         container.add(titlePanel, BorderLayout.NORTH);
         inputPanel = new JPanel();
@@ -66,7 +67,10 @@ public class Register {
         inputPanel.add(confirmPasswordLabel);
         inputPanel.add(confirmPasswordField);
         chooseAvatarLabel = new JLabel("Choose Avatar");
-
+        inputPanel.add(chooseAvatarLabel);
+        avatarCombobox = new JComboboxImageCustom<>();
+        avatarCombobox.setImages(icons);
+        inputPanel.add(avatarCombobox);
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2));
         registerButton = new CustomJButton("Register");
@@ -91,7 +95,7 @@ public class Register {
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(getContainer());
-        frame.setSize(450, 650);
+        frame.setSize(450, 700);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
