@@ -14,15 +14,17 @@ public class UserJListCustom {
     private JList<User> userList;
     private Vector<User> users;
 
+
     public UserJListCustom() {
         userList = new JList<>();
-        userList.setCellRenderer(new JListRenderer());
+        userList.setCellRenderer(new JListRenderer( ));
         scrollPane = new JScrollPane(userList);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
 
     }
+
 
     private void validateUserList() {
         this.users.sort((o1, o2) -> (int) (o2.getScore() - o1.getScore()));

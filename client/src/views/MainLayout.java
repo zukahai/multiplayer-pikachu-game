@@ -14,6 +14,7 @@ public class MainLayout {
     public JPanel container, leftPanel, rightPanel;
     public UserJListCustom userJListCustom;
     public JPanel getContainer() {
+        User currentUser = new User(1, "nvnam", "Nguyễn Văn Nam", "user1", 1000, 1);
         container = new JPanel();
         container.setLayout(new GridLayout(1, 2));
         leftPanel = new JPanel();

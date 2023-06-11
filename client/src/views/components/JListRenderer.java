@@ -10,7 +10,6 @@ public class JListRenderer  implements ListCellRenderer<User> {
     private JPanel container, avatarPanel, detailPanel;
     private JLabel usernameLabel, nameLabel, scoreLabel, avatarLabel;
 
-
     public JListRenderer() {
         container = new JPanel();
         container.setLayout(new BorderLayout());
@@ -21,7 +20,6 @@ public class JListRenderer  implements ListCellRenderer<User> {
         avatarPanel.setBackground(Color.WHITE);
         avatarLabel = new JLabel();
         avatarPanel.add(avatarLabel, BorderLayout.CENTER);
-
         detailPanel = new JPanel();
         detailPanel.setLayout(new GridLayout(3, 1));
         detailPanel.setBackground(Color.WHITE);
@@ -42,9 +40,7 @@ public class JListRenderer  implements ListCellRenderer<User> {
         container.add(detailPanel, BorderLayout.CENTER);
         container.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 
-
     }
-
 
     @Override
     public Component getListCellRendererComponent(JList<? extends User> list, User value, int index, boolean isSelected, boolean cellHasFocus) {
