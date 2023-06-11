@@ -79,12 +79,8 @@ public class Game implements Serializable{
         return roomID;
     }
 
-<<<<<<< HEAD
     public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 }
-=======
-    
-}
->>>>>>> 7c693821ddb331480bb6c28f10d229c26c13954e
+

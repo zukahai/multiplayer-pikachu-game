@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.time.LocalTime;
 
 import configs.Configs;
-import javafx.scene.layout.Border;
 import models.Client;
 import models.JoinRoom;
 import models.Step;
