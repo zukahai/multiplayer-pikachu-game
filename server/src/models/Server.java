@@ -20,10 +20,10 @@ public class Server extends Thread {
 
 	private ArrayList<PlayerThread> playerThreads = new ArrayList<>();
 
-	public static int Nroom = 100;
+	public static int Nroom = 1000;
 
 	public static Game rooms[] = new Game[Nroom + 1];
-	public static HashMap<String, Integer> score[] = new HashMap[Nroom + 1];
+	public static HashMap<User, Integer> score[] = new HashMap[Nroom + 1];
 	
 	public Server(int port) {
 		this.port = port;

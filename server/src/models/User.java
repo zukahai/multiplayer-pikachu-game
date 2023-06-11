@@ -68,11 +68,11 @@ public class User implements Serializable{
         this.score = score;
     }
 
-    public int getId_avatar() {
+    public int getIdAvatar() {
         return id_avatar;
     }
 
-    public void setId_avatar(int id_avatar) {
+    public void setIdAvatar(int id_avatar) {
         this.id_avatar = id_avatar;
     }
 

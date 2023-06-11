@@ -51,7 +51,7 @@ public class JListRenderer  implements ListCellRenderer<User> {
         usernameLabel.setText(value.getUsername());
         nameLabel.setText(value.getName());
         scoreLabel.setText(String.valueOf((int) value.getScore()));
-        avatarLabel.setIcon(getAvatar(value.getId_avatar()));
+        avatarLabel.setIcon(getAvatar(value.getIdAvatar()));
 
         return container;
     }

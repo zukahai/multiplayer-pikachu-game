@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import configs.Configs;
 import models.Client;
@@ -27,7 +28,7 @@ public class ClientController extends Thread {
     public ClientController(String host) {
         this.gui = new BoadGameGUI();
         this.client = new Client(host, Configs.SERVER_PORT);
-        this.client.writeObjectToServer(new User("Hai " + LocalTime.now().toString(), "Linh"));
+        this.client.writeObjectToServer(new User(1, "Phan Đức Hải", "HaiZuka" + Math.random(), "a", 0, 4));
         this.client.writeObjectToServer(new JoinRoom("JoinRoom", 68));
         this.init();
     }
@@ -73,11 +74,14 @@ public class ClientController extends Thread {
             
             this.gui.setBoardFormArray(this.board);
             this.gui.setRoomIDLable(room_id);
+
+            ArrayList<User> users = this.client.getHighScore().getUsers();
+            this.gui.userJListCustom.setUsers(users);
         }
     }
 
     public static void main(String[] args) {
-        ClientController clientController = new ClientController("localhost");
+        ClientController clientController = new ClientController("192.168.1.7");
         clientController.start();
     }
 
