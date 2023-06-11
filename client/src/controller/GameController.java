@@ -25,15 +25,16 @@ public class GameController extends Thread {
 
     private int indexStep = 1;
 
-    public GameController(String host) {
+    public GameController(Client client) {
         this.gui = new BoadGameGUI();
-        this.client = new Client(host, Configs.SERVER_PORT);
+        this.client = client;
         User user = new User(1, "Phan Đức Hải", "HaiZuka", "a", 0, 9);
         User user2 = new User(2, "Nguyễn Văn Nam", "Nam077", "a", 101, 10);
         User user3 = new User(3, "Phan Việt Long", "GonPhan", "a", 101, 5);
         this.client.writeObjectToServer(user2);
         this.client.writeObjectToServer(new JoinRoom("JoinRoom", 68));
         this.init();
+        this.start();
     }
 
     public void init() {
@@ -89,8 +90,6 @@ public class GameController extends Thread {
     }
 
     public static void main(String[] args) {
-        GameController clientController = new GameController("192.168.1.7");
-        clientController.start();
     }
 
 }
