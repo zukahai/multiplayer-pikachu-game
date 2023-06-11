@@ -22,10 +22,9 @@ public class Client extends Thread {
 	public Client(String host, int port) {
 		this.host = host;
 		this.port = port;
-		this.connect();
 	}
 	
-	public void connect() {
+	public boolean connect() {
 		try {
 			this.socket = new Socket(this.host, this.port);
 			System.out.println("Connect");
@@ -34,8 +33,9 @@ public class Client extends Thread {
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 
@@ -78,6 +78,10 @@ public class Client extends Thread {
 
 	public User getUser() {
 		return ((ThreadReadOject)threadReadOject).getUser();
+	}
+
+	public void setUser(User user) {
+		((ThreadReadOject)threadReadOject).setUser(user);
 	}
 
 	public HighScore getHighScore() {

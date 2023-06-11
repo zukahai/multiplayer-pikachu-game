@@ -20,6 +20,18 @@ public class AddressIP {
         frame.setVisible(true);
     }
 
+    public JButton getAccepButton() {
+        return keyBoardNumber.getAccepButton();
+    }
+
+    public JTextField getTextField() {
+        return keyBoardNumber.getTextField();
+    }
+
+    public void setVisible(boolean visible) {
+        frame.setVisible(visible);
+    }
+
     public static void main(String[] args) {
         AddressIP addressIP = new AddressIP();
     }

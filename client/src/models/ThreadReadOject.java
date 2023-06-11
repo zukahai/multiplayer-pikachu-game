@@ -66,6 +66,10 @@ public class ThreadReadOject extends Thread {
         return this.user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public HighScore getHighScore() {
         return this.hs;
     }

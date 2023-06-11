@@ -2,6 +2,9 @@ package views.components;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import utils.Util;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,10 +37,11 @@ public class KeyBoardNumber {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.setLayout(new GridLayout(4, 3, 10, 10));
         textField = new CustomCalculatorTextField();
-        textField.setFont(new Font("Arial", Font.BOLD, 20));
+        textField.setFont(new Font("Arial", Font.BOLD, 40));
         textField.setHorizontalAlignment(JTextField.RIGHT);
         textField.setBackground(Color.WHITE);
         textField.setPreferredSize(new Dimension(400, 30));
+        textField.setText(Util.getIPv4());
         textFieldPanel = new JPanel();
         textFieldPanel.setBackground(Color.WHITE);
         textFieldPanel.setLayout(new BorderLayout());
@@ -92,14 +96,21 @@ public class KeyBoardNumber {
                 textField.setText(textField.getText() + roundButtons[finalI].getText());
             });
         }
-        // demo action listener for accept button
-        acceptButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "You entered: " + textField.getText());
-        });
+        
     }
     public JPanel getContainer() {
         return container;
     }
+
+    public RoundButton getAccepButton() {
+        return acceptButton;
+    }
+
+    public JTextField getTextField() {
+        return textField;
+    }
+
+
 
     public static void main(String[] args) {
         KeyBoardNumber keyBoardNumber = new KeyBoardNumber();
