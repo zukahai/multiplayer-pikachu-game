@@ -34,7 +34,7 @@ public class Server extends Thread {
 	static {
 		for (int i = 0; i <= Nroom; i++) {
 			rooms[i] = new Game(i);
-			score[i] = new HashMap<>();
+			score[i] = new HashMap<User, Integer>();
 		}
 	}
 	

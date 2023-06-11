@@ -33,7 +33,7 @@ public class Game implements Serializable{
     void initBoard() {
         int list[] = new int[9 * 16];
         for (int i = 0; i < 9 * 16; i ++) {
-            int value = (int) (Math.round(Math.random() * 100000)) % 16 + 1;
+            int value = (int) (Math.round(Math.random() * 100000)) % 36 + 1;
             list[i++] = value;
             list[i] = value;
         }

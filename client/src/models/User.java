@@ -92,7 +92,7 @@ public class User implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        return this.username == ((User) o).username;
+        return this.username.equals(((User)o).username);
     }
 
     @Override

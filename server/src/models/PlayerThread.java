@@ -28,6 +28,7 @@ public class PlayerThread extends Thread{
 			public void actionPerformed(ActionEvent e) {
 				int roomID = game.getRoomID();
 				if (roomID != 0) {
+					System.out.println(Server.score[roomID].keySet());
 					ArrayList<User> users = new ArrayList<>();
 					for (User user: Server.score[roomID].keySet()) {
 						user.setScore(Server.score[roomID].get(user));
@@ -47,9 +48,10 @@ public class PlayerThread extends Thread{
 			if (object instanceof User) {
 				User user = (User) object;
 				this.user = user;
-				this.writeObjectToClient(this.socket, this.user);
+				this.writeObjectToClient(this.socket, user);
 				System.out.println("Login success");
 			}
+
 			if (object instanceof JoinRoom) {
 				JoinRoom joinRoom = (JoinRoom) object;
 				int roomID = joinRoom.getRoomID();
@@ -61,8 +63,9 @@ public class PlayerThread extends Thread{
 
 				Server.score[roomID].put(this.user, 0);
 
-				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
+				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers() + " User " + this.user);
 			}
+
 			if (object instanceof Step) {
 				Step step = (Step) object;
 				System.out.println("Step: " +step);
