@@ -22,7 +22,7 @@ public class Room {
 
     public ArrayList<Game> gameSearch = new ArrayList<>();
 
-    public CustomJButton createRoomButton;
+    public CustomJButton createRoomButton, quickJoinButton;
 
     public Icon icon = getImage("/images/assets/game.jpg", 180, 130);
 
@@ -42,12 +42,18 @@ public class Room {
         searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         createRoomButton = new CustomJButton("Create Room");
+        searchPanel.add(new JLabel("   "));
         searchPanel.add(createRoomButton);
+        searchPanel.add(new JLabel("   "));
+        quickJoinButton = new CustomJButton("Quick Join");
+        quickJoinButton.setBackground(new Color(0, 132, 97));
+        searchPanel.add(quickJoinButton);
         contentPanel.add(searchPanel);
         roomList = new JList<>(listModel);
         roomList.setCellRenderer(new JListRendererRoom(icon));
         roomList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         roomList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        // center
         //4 room in a row
         roomList.setVisibleRowCount(-1);
         JScrollPane scrollPane = new JScrollPane(roomList);
@@ -115,7 +121,7 @@ public class Room {
 
     public void initFrame() {
         jFrame = new JFrame();
-        jFrame.setSize(858, 600);
+        jFrame.setSize(900, 600);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLocationRelativeTo(null);
         jFrame.setContentPane(getContainer());
