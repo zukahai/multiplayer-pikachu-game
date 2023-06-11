@@ -32,9 +32,10 @@ public class Game implements Serializable{
         int board[][] = new int[9][16];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 16; j++) {
-                board[i][j] = (int) (Math.round(Math.random() * 100000)) % 36 + 1;
+                board[i][j] = (int) (Math.round(Math.random() * 100000)) % 6 + 1;
             }
         }
+       
         this.board = board;
     }
 
@@ -78,7 +79,12 @@ public class Game implements Serializable{
         return roomID;
     }
 
+<<<<<<< HEAD
     public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 }
+=======
+    
+}
+>>>>>>> 7c693821ddb331480bb6c28f10d229c26c13954e

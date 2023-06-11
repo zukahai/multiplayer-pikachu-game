@@ -207,9 +207,14 @@ public class BoadGameGUI extends JFrame {
 	public void setBoardFormArray(int board[][]) {
 		this.board = board.clone();
 		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length; j++) {
-				this.buttons[i][j].setIcon(getIcon(board[i][j]));
-			}
+			for (int j = 0; j < board[i].length; j++)
+				if (board[i][j] != 0) 
+					this.buttons[i][j].setIcon(getIcon(board[i][j]));
+				else {
+					this.buttons[i][j].setIcon(null);
+					this.buttons[i][j].setBackground(new Color(105, 105, 105));
+				}
+					
 		}
 	}
 

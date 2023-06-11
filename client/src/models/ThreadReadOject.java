@@ -7,22 +7,18 @@ import java.net.Socket;
 
 public class ThreadReadOject extends Thread {
     private Socket socket = null;
-    private int board[][] = new int[9][16];
     public Game game = new Game(0);
     private User user = new User("Guest", "Guest");
     
     public ThreadReadOject(Socket socket) {
-        this.socket = socket;
-        for (int i = 0; i < this.board.length; i++) {
-            for (int j = 0; j < this.board[i].length; j++) {
-                this.board[i][j] = 1;
-            }
-        }
+       this.socket = socket;
     }
     
     public void run() {
         while(true) {
             Object object = this.readObjectFromServer();
+            if (object == null)
+                continue;
             if (object instanceof Game) {
                 this.game = (Game) object;
                 System.out.println("Game change");

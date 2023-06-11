@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import configs.Configs;
+import utils.Hash;
 import utils.Util;
 
 public class Server extends Thread {
@@ -18,9 +20,10 @@ public class Server extends Thread {
 
 	private ArrayList<PlayerThread> playerThreads = new ArrayList<>();
 
-	public static int Nroom = 10000;
-	
+	public static int Nroom = 100;
+
 	public static Game rooms[] = new Game[Nroom + 1];
+	public static HashMap<String, Integer> score[] = new HashMap[Nroom + 1];
 	
 	public Server(int port) {
 		this.port = port;
@@ -31,6 +34,7 @@ public class Server extends Thread {
 	static {
 		for (int i = 0; i <= Nroom; i++) {
 			rooms[i] = new Game(i);
+			score[i] = new HashMap<>();
 		}
 	}
 	
@@ -65,7 +69,6 @@ public class Server extends Thread {
 		}
 	}
 	
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Server server = new Server(Configs.SERVER_PORT);
