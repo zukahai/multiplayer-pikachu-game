@@ -40,7 +40,7 @@ public class PlayerThread extends Thread{
 				}
 			}
 		});
-		timer.start();
+		// timer.start();
 	}
 	
 	public void run() {
@@ -64,6 +64,15 @@ public class PlayerThread extends Thread{
 
 				Server.score[roomID].put(this.user, 0);
 
+				//Update ranking
+				ArrayList<User> users = new ArrayList<>();
+				for (User user: Server.score[roomID].keySet()) {
+					user.setScore(Server.score[roomID].get(user));
+					users.add(user);
+				}
+				HighScore hs = new HighScore(users);
+				this.sendAllSocketInRoom(roomID, hs);
+
 				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers() + " User " + this.user);
 			}
 
@@ -86,7 +95,7 @@ public class PlayerThread extends Thread{
 					int roomID = step.getRoomID();
 					this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
 					Util.printArray(step.getBoard());
-					this.sendAllSocketInRoom(step.getRoomID());
+					this.sendAllSocketInRoom(step.getRoomID(), this.game);
 					System.out.println("=============>> TRUE");
 
 					// update score
@@ -94,15 +103,24 @@ public class PlayerThread extends Thread{
 					Server.rooms[roomID].subBonus(Configs.SUB_SCORE_BONUS);
 					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + Configs.SCORE + bonus);
 					System.out.println("Score: " + Server.score[roomID].get(this.user) + " Username: " + this.user.getUsername());
+
+					//Update ranking
+					ArrayList<User> users = new ArrayList<>();
+					for (User user: Server.score[roomID].keySet()) {
+						user.setScore(Server.score[roomID].get(user));
+						users.add(user);
+					}
+					HighScore hs = new HighScore(users);
+					this.sendAllSocketInRoom(roomID, hs);
 				} else
 					System.out.println("=============>> FALSE");
 			}
 		}
 	}
 
-	public void sendAllSocketInRoom(int roomID) {
+	public void sendAllSocketInRoom(int roomID, Object object) {
 		for (Socket socket : Server.rooms[roomID].getSockets()) {
-			this.writeObjectToClient(socket, game);
+			this.writeObjectToClient(socket, object);
 		}
 	}
 
