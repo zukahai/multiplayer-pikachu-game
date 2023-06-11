@@ -135,7 +135,7 @@ public class Room {
             ArrayList<Game> games = new ArrayList<>();
             for (int i = 0; i < 200; i++) {
                 Game game = new Game();
-                game.setRoomID(i + 1000);
+//                game.setRoomID(i + 1000);
                 games.add(game);
             }
             room.setRoomList(games);
