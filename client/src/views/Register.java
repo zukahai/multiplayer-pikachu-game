@@ -87,7 +87,8 @@ public class Register {
         // demo action listener for chose a
         avatarCombobox.addActionListener(e -> {
             int id = avatarIds[avatarCombobox.getSelectedIndex()];
-            JOptionPane.showMessageDialog(null, "You chose avatar id: " + id);
+//            JOptionPane.showMessageDialog(null, "You chose avatar id: " + id);
+            image.setIcon(icons[avatarCombobox.getSelectedIndex()]);
 
         });
         return container;
