@@ -10,6 +10,10 @@ public class Game implements Serializable{
     private int roomID;
     HashMap <User, Socket> players = new HashMap<>();
 
+
+    public Game() {
+    }
+
     public Game(int roomID) {
         this.roomID = roomID;
         this.initBoard();
@@ -74,5 +78,7 @@ public class Game implements Serializable{
         return roomID;
     }
 
-    
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
+    }
 }

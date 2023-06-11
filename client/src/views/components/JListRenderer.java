@@ -45,7 +45,7 @@ public class JListRenderer  implements ListCellRenderer<User> {
     public Component getListCellRendererComponent(JList<? extends User> list, User value, int index, boolean isSelected, boolean cellHasFocus) {
         usernameLabel.setText(value.getUsername());
         nameLabel.setText(value.getName());
-        scoreLabel.setText(String.valueOf(value.getScore()));
+        scoreLabel.setText(String.valueOf((int) value.getScore()));
         avatarLabel.setIcon(getAvatar(value.getId_avatar()));
         if (isSelected) {
             container.setBorder(BorderFactory.createLineBorder(new Color(0, 157, 141), 2));

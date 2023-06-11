@@ -11,4 +11,8 @@ public class CustomTextField extends JTextField  {
         this.setFont(new Font("Arial", Font.PLAIN, 15));
 
     }
+
+    public void setPlaceholder(String enterRoomName) {
+        this.setText(enterRoomName);
+    }
 }
