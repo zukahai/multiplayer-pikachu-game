@@ -18,19 +18,14 @@ public class Register {
     public JLabel usernameLabel, passwordLabel, nameLabel, forgetLabel, registerLabel, confirmPasswordLabel, chooseAvatarLabel;
     public CustomJButton registerButton;
 
-    public int avatarIds[] = {1, 2, 3, 4, 5};
+    public int avatarIds[] = {1, 2, 3, 4, 5 ,6 ,7 ,8 ,9,10};
 
-    public Icon icons[] = {
-            getAvatar(1),
-            getAvatar(2),
-            getAvatar(3),
-            getAvatar(4),
-            getAvatar(5)
-    };
+    public Icon icons[] = new Icon[10];
 
     public JComboboxImageCustom<String> avatarCombobox;
 
     public JPanel getContainer() {
+        setAvatarCombobox();
         container = new JPanel();
         container.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         container.setLayout(new BorderLayout());
@@ -88,9 +83,21 @@ public class Register {
         buttonPanel.add(registerButton);
         container.add(inputPanel, BorderLayout.CENTER);
         container.setBackground(Color.WHITE);
+
+        // demo action listener for chose a
+        avatarCombobox.addActionListener(e -> {
+            int id = avatarIds[avatarCombobox.getSelectedIndex()];
+//            JOptionPane.showMessageDialog(null, "You chose avatar id: " + id);
+            image.setIcon(icons[avatarCombobox.getSelectedIndex()]);
+
+        });
         return container;
     }
-
+    public void setAvatarCombobox() {
+        for (int i = 0; i < 10; i++) {
+            icons[i] = getAvatar(avatarIds[i]);
+        }
+    }
     public void init() {
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
