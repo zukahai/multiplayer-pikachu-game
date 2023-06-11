@@ -18,8 +18,7 @@ public class KeyBoardNumber {
     public RoundButton roundButtons[] = new RoundButton[11];
 
     public KeyBoardNumber() {
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         JLabel label = new JLabel("Enter IP Address");
         label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setForeground(new Color(0, 93, 218));
@@ -73,15 +72,11 @@ public class KeyBoardNumber {
         container.add(Box.createRigidArea(new Dimension(0, 10)));
         container.add(mainPanel);
 
-        frame.setContentPane(container);
-        frame.setSize(530, 500);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
 
         textFieldPanel.add(textField, BorderLayout.WEST);
         textFieldPanel.add(Box.createRigidArea(new Dimension(10, 0)), BorderLayout.CENTER);
         textFieldPanel.add(deleteButton, BorderLayout.EAST);
+
 
 
 
@@ -96,6 +91,9 @@ public class KeyBoardNumber {
         acceptButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "You entered: " + textField.getText());
         });
+    }
+    public JPanel getContainer() {
+        return container;
     }
 
     public static void main(String[] args) {

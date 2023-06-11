@@ -3,6 +3,7 @@ package views;
 import views.components.CustomJButton;
 import views.components.CustomJPasswordField;
 import views.components.CustomTextField;
+import views.components.JComboboxImageCustom;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +15,20 @@ public class Register {
 
     public CustomTextField usernameField, nameField;
     public CustomJPasswordField passwordField, confirmPasswordField;
-    public JLabel usernameLabel, passwordLabel, nameLabel, forgetLabel, registerLabel, confirmPasswordLabel;
+    public JLabel usernameLabel, passwordLabel, nameLabel, forgetLabel, registerLabel, confirmPasswordLabel, chooseAvatarLabel;
     public CustomJButton registerButton;
+
+    public int avatarIds[] = {1, 2, 3, 4, 5};
+
+    public Icon icons[] = {
+            getAvatar(1),
+            getAvatar(2),
+            getAvatar(3),
+            getAvatar(4),
+            getAvatar(5)
+    };
+
+    public JComboboxImageCustom<String> roleCombobox;
 
     public JPanel getContainer() {
         container = new JPanel();
@@ -52,6 +65,8 @@ public class Register {
         inputPanel.add(passwordField);
         inputPanel.add(confirmPasswordLabel);
         inputPanel.add(confirmPasswordField);
+        chooseAvatarLabel = new JLabel("Choose Avatar");
+
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2));
         registerButton = new CustomJButton("Register");
@@ -86,6 +101,18 @@ public class Register {
         Image image = imageIcon.getImage();
         Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(newImage);
+    }
+
+    public Icon getAvatar(int index) {
+        if (index <= 0 || index > 9) {
+            index = 1;
+        }
+
+        int width = 70;
+        int height = 70;
+        Image image = new ImageIcon(getClass().getResource("/images/avatas/" + index + ".png")).getImage();
+        Icon icon = new ImageIcon(image.getScaledInstance(width, height, image.SCALE_SMOOTH));
+        return icon;
     }
 
     public static void main(String[] args) {
