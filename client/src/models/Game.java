@@ -109,5 +109,9 @@ public class Game implements Serializable{
         return bonus;
     }
 
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
+    }
+
     
 }
