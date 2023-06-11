@@ -25,13 +25,13 @@ public class GameController extends Thread {
 
     private int indexStep = 1;
 
-    public GameController(Client client) {
+    public GameController(Client client, User user) {
         this.gui = new BoadGameGUI();
         this.client = client;
-        User user = new User(1, "Phan Đức Hải", "HaiZuka", "a", 0, 9);
-        User user2 = new User(2, "Nguyễn Văn Nam", "Nam077", "a", 101, 10);
-        User user3 = new User(3, "Phan Việt Long", "GonPhan", "a", 101, 5);
-        this.client.writeObjectToServer(user3);
+        // User user = new User(1, "Phan Đức Hải", "HaiZuka", "a", 0, 9);
+        // User user2 = new User(2, "Nguyễn Văn Nam", "Nam077", "a", 101, 10);
+        // User user3 = new User(3, "Phan Việt Long", "GonPhan", "a", 101, 5);
+        this.client.writeObjectToServer(user);
         this.client.writeObjectToServer(new JoinRoom("JoinRoom", 68));
         this.init();
         this.start();

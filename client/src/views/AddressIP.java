@@ -12,7 +12,7 @@ public class AddressIP {
     public AddressIP(){
         keyBoardNumber = new KeyBoardNumber();
         frame = new JFrame("Address IP");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(keyBoardNumber.getContainer());
         frame.setSize(530, 500);
         frame.setLocationRelativeTo(null);
@@ -30,6 +30,10 @@ public class AddressIP {
 
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
+    }
+
+    public void dispose() {
+        frame.dispose();
     }
 
     public static void main(String[] args) {

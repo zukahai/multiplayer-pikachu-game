@@ -66,12 +66,13 @@ public class Login {
     }
 
     public void init() {
-        JFrame frame = new JFrame("Login");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(getContainer());
-        frame.setSize(450, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        // JFrame frame = new JFrame("Login");
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame = new JFrame("Login");
+        jFrame.setContentPane(getContainer());
+        jFrame.setSize(450, 600);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setVisible(true);
     }
 
     public Icon getImage(String path, int width, int height) {
@@ -79,6 +80,10 @@ public class Login {
         Image image = imageIcon.getImage();
         Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(newImage);
+    }
+
+    public void setVisible(boolean visible) {
+        jFrame.setVisible(visible);
     }
 
     public static void main(String[] args) {

@@ -30,9 +30,11 @@ public class ClientController {
             try {
                 client = new Client(ip, Configs.SERVER_PORT);
                 if (client.connect()) {
-                    JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText());
+                    // JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText());
+                    new LoginController(client);
+                    //turn off address IP
                     addressIP.setVisible(false);
-                    new GameController(client);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText() + " connect failed!");
                 }
