@@ -1,6 +1,7 @@
 package views;
 
 import models.Game;
+import views.components.CustomJButton;
 import views.components.CustomTextField;
 import views.components.JListRendererRoom;
 
@@ -11,19 +12,21 @@ import java.util.Objects;
 import java.util.Vector;
 
 public class Room {
-    private JFrame jFrame;
-    private JPanel container, contentPanel, searchPanel;
-    private CustomTextField searchField;
-    private JLabel searchLabel;
-    private JList<Game> roomList;
-    private DefaultListModel<Game> listModel;
-    private ArrayList<Game> games = new ArrayList<>();
+    public JFrame jFrame;
+    public JPanel container, contentPanel, searchPanel;
+    public CustomTextField searchField;
+    public JLabel searchLabel;
+    public JList<Game> roomList;
+    public DefaultListModel<Game> listModel;
+    public ArrayList<Game> games = new ArrayList<>();
 
-    private ArrayList<Game> gameSearch = new ArrayList<>();
+    public ArrayList<Game> gameSearch = new ArrayList<>();
+
+    public CustomJButton createRoomButton;
 
     public Icon icon = getImage("/images/assets/game.jpg", 180, 130);
 
-    private void createRoomList() {
+    public void createRoomList() {
         listModel = new DefaultListModel<>();
         searchPanel = new JPanel();
         searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
@@ -38,6 +41,8 @@ public class Room {
         searchField.setPlaceholder("Enter room name");
         searchPanel.add(searchLabel);
         searchPanel.add(searchField);
+        createRoomButton = new CustomJButton("Create Room");
+        searchPanel.add(createRoomButton);
         contentPanel.add(searchPanel);
         roomList = new JList<>(listModel);
         roomList.setCellRenderer(new JListRendererRoom(icon));
@@ -108,7 +113,7 @@ public class Room {
         }
     }
 
-    private void initFrame() {
+    public void initFrame() {
         jFrame = new JFrame();
         jFrame.setSize(858, 600);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
