@@ -1,10 +1,15 @@
 package models;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.time.LocalTime;
+import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 import utils.PikachuAlgorithm;
 import utils.Util;
@@ -17,6 +22,23 @@ public class PlayerThread extends Thread{
 	
 	public PlayerThread(Socket socket) {
 		this.socket = socket;
+		Timer timer = new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int roomID = game.getRoomID();
+				if (roomID != 0) {
+					ArrayList<User> users = new ArrayList<>();
+					for (User user: Server.score[roomID].keySet()) {
+						user.setScore(Server.score[roomID].get(user));
+						users.add(user);
+					}
+					HighScore hs = new HighScore(users);
+					writeObjectToClient(socket, hs);
+				}
+			}
+		});
+		timer.start();
 	}
 	
 	public void run() {
@@ -32,11 +54,12 @@ public class PlayerThread extends Thread{
 				JoinRoom joinRoom = (JoinRoom) object;
 				int roomID = joinRoom.getRoomID();
 				System.out.println(joinRoom);
-				this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
+				int board[][] = Server.rooms[roomID].getBoard();
+				this.game = new Game(board, roomID);
 				this.writeObjectToClient(this.socket, this.game);
 				Server.rooms[roomID].addPlayer(this.user, socket);
 
-				Server.score[roomID].put(this.user.getUsername(), 0);
+				Server.score[roomID].put(this.user, 0);
 
 				System.out.println("Room " + roomID + " join, Number of player: " + Server.rooms[roomID].getNumberOfPlayers());
 			}
@@ -61,8 +84,8 @@ public class PlayerThread extends Thread{
 					Util.printArray(step.getBoard());
 					this.sendAllSocketInRoom(step.getRoomID());
 					System.out.println("=============>> TRUE");
-					Server.score[roomID].put(this.user.getUsername(), Server.score[roomID].get(this.user.getUsername()) + 1);
-					System.out.println("Score: " + Server.score[roomID].get(this.user.getUsername()) + " Username: " + this.user.getUsername());
+					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + 1);
+					System.out.println("Score: " + Server.score[roomID].get(this.user) + " Username: " + this.user.getUsername());
 				} else
 					System.out.println("=============>> FALSE");
 			}

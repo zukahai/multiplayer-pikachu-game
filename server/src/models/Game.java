@@ -5,10 +5,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import utils.Util;
+
 public class Game implements Serializable{
     private int board[][];
     private int roomID;
     HashMap <User, Socket> players = new HashMap<>();
+
+    public Game() {
+        
+    }
 
     public Game(int roomID) {
         this.roomID = roomID;
@@ -26,14 +32,15 @@ public class Game implements Serializable{
 
     void initBoard() {
         int list[] = new int[9 * 16];
-        for (int i = 0; i < 9 * 16 / 2; i += 2) {
+        for (int i = 0; i < 9 * 16; i ++) {
             int value = (int) (Math.round(Math.random() * 100000)) % 16 + 1;
+            list[i++] = value;
             list[i] = value;
-            list[i + 1] = value;
         }
-        for (int i = 0; i < 2; i++) {
-            int randomIndex1 = (int) (Math.round(Math.random())) % list.length;
-            int randomIndex2 = (int) (Math.round(Math.random())) % list.length;
+
+        for (int i = 0; i < 100; i++) {
+            int randomIndex1 = (int) (Math.round(Math.random() * 100000)) % list.length;
+            int randomIndex2 = (int) (Math.round(Math.random() * 100000)) % list.length;
             //swap
             int temp = list[randomIndex1];
             list[randomIndex1] = list[randomIndex2];
@@ -44,7 +51,7 @@ public class Game implements Serializable{
         int board[][] = new int[9][16];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 16; j++) {
-                board[i][j] = (int) (Math.round(Math.random() * 100000)) % 6 + 1;
+                board[i][j] = list[indexList++];
             }
         }
         
