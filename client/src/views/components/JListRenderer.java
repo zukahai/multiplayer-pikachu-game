@@ -5,10 +5,15 @@ import models.User;
 import javax.swing.*;
 import java.awt.*;
 
-public class JListRenderer  implements ListCellRenderer<User> {
+public class JListRenderer implements ListCellRenderer<User> {
 
     private JPanel container, avatarPanel, detailPanel;
     private JLabel usernameLabel, nameLabel, scoreLabel, avatarLabel;
+    private User currentUser;
+
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
 
     public JListRenderer() {
         container = new JPanel();
@@ -48,7 +53,17 @@ public class JListRenderer  implements ListCellRenderer<User> {
         nameLabel.setText(value.getName());
         scoreLabel.setText(String.valueOf((int) value.getScore()));
         avatarLabel.setIcon(getAvatar(value.getIdAvatar()));
-
+        if (value.getUsername().equals(this.currentUser.getUsername())) {
+                detailPanel.setBackground(new Color(136, 255, 160));
+                nameLabel.setForeground(new Color(0, 93, 218));
+                usernameLabel.setForeground(new Color(0, 93, 218));
+                scoreLabel.setForeground(new Color(215, 50, 50));
+        } else {
+            detailPanel.setBackground(Color.WHITE);
+            nameLabel.setForeground(new Color(0, 93, 218));
+            usernameLabel.setForeground(new Color(0, 93, 218));
+            scoreLabel.setForeground(new Color(215, 50, 50));
+        }
         return container;
     }
 
