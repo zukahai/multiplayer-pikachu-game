@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
+import configs.Configs;
 import utils.PikachuAlgorithm;
 import utils.Util;
 
@@ -87,7 +88,11 @@ public class PlayerThread extends Thread{
 					Util.printArray(step.getBoard());
 					this.sendAllSocketInRoom(step.getRoomID());
 					System.out.println("=============>> TRUE");
-					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + 1);
+
+					// update score
+					int bonus = Server.rooms[roomID].getBonus();
+					Server.rooms[roomID].subBonus(Configs.SUB_SCORE_BONUS);
+					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + Configs.SCORE + bonus);
 					System.out.println("Score: " + Server.score[roomID].get(this.user) + " Username: " + this.user.getUsername());
 				} else
 					System.out.println("=============>> FALSE");

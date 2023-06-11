@@ -5,11 +5,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import utils.Util;
-
 public class Game implements Serializable{
     private int board[][];
     private int roomID;
+    private int bonus = 72;
     HashMap <User, Socket> players = new HashMap<>();
 
     public Game() {
@@ -38,7 +37,7 @@ public class Game implements Serializable{
             list[i] = value;
         }
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             int randomIndex1 = (int) (Math.round(Math.random() * 100000)) % list.length;
             int randomIndex2 = (int) (Math.round(Math.random() * 100000)) % list.length;
             //swap
@@ -74,6 +73,14 @@ public class Game implements Serializable{
         this.players.remove(user);
     }
 
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
+    public void subBonus(int sub) {
+        this.bonus -= sub;
+    }
+
     int getNumberOfPlayers() {
         return this.players.size();
     }
@@ -96,6 +103,10 @@ public class Game implements Serializable{
 
     public int getRoomID() {
         return roomID;
+    }
+
+    public int getBonus() {
+        return bonus;
     }
 
     
