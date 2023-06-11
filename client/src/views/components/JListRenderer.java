@@ -14,8 +14,7 @@ public class JListRenderer  implements ListCellRenderer<User> {
     public JListRenderer() {
         container = new JPanel();
         container.setLayout(new BorderLayout());
-        container.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
+        container.setBackground(new Color(255, 182, 193));
         avatarPanel = new JPanel();
         avatarPanel.setLayout(new BorderLayout());
         avatarPanel.setPreferredSize(new Dimension(70, 70));
@@ -27,15 +26,21 @@ public class JListRenderer  implements ListCellRenderer<User> {
         detailPanel.setLayout(new GridLayout(3, 1));
         detailPanel.setBackground(Color.WHITE);
         usernameLabel = new JLabel();
+        usernameLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        usernameLabel.setForeground(new Color(0, 93, 218));
         nameLabel = new JLabel();
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        nameLabel.setForeground(new Color(0, 93, 218));
         scoreLabel = new JLabel();
+        scoreLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        scoreLabel.setForeground(new Color(215, 50, 50));
         detailPanel.add(usernameLabel);
         detailPanel.add(nameLabel);
         detailPanel.add(scoreLabel);
         detailPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         container.add(avatarPanel, BorderLayout.WEST);
         container.add(detailPanel, BorderLayout.CENTER);
-        container.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        container.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 
 
     }
@@ -47,11 +52,7 @@ public class JListRenderer  implements ListCellRenderer<User> {
         nameLabel.setText(value.getName());
         scoreLabel.setText(String.valueOf((int) value.getScore()));
         avatarLabel.setIcon(getAvatar(value.getId_avatar()));
-        if (isSelected) {
-            container.setBorder(BorderFactory.createLineBorder(new Color(0, 157, 141), 2));
-        } else {
-            container.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        }
+
         return container;
     }
 

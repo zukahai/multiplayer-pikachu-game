@@ -4,6 +4,7 @@ import models.User;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Vector;
 
 public class UserJListCustom {
@@ -23,12 +24,17 @@ public class UserJListCustom {
 
     }
 
+    private void validateUserList() {
+        this.users.sort((o1, o2) -> (int) (o2.getScore() - o1.getScore()));
+    }
+
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
 
     public void setUsers(ArrayList<User> users) {
         this.users = new Vector<>(users);
+        validateUserList();
         userList.setListData(this.users);
     }
 }

@@ -47,7 +47,7 @@ public class BoadGameGUI extends JFrame {
 					frame.setVisible(true);
 					ArrayList<User> users = new  ArrayList<>();
 					for (int i = 0; i < 10; i++) {
-						users.add(new User(1, "nvnam", "Nguyễn Văn Nam", "user1", 1000, 1));
+						users.add(new User(1, "nvnam", "Nguyễn Văn Nam", "user1", i+1000, 1));
 						users.add(new User(2, "haizuka", "Nguyễn Văn Hải", "user2", 1000, 2));
 						users.add(new User(3, "huyhoang", "Nguyễn Huy Hoàng", "user3", 1000, 3));
 						users.add(new User(4, "pvlong", "Phạm Văn Long", "user4", 1000, 4));
