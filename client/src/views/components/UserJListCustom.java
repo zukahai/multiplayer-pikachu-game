@@ -24,6 +24,9 @@ public class UserJListCustom {
         scrollPane.setBorder(null);
 
     }
+    public void setCurrentUser(User user) {
+        ((JListRenderer) userList.getCellRenderer()).setCurrentUser(user);
+    }
 
 
     private void validateUserList() {
