@@ -5,6 +5,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import configs.Configs;
+
 public class Game implements Serializable{
     private int board[][];
     private int roomID;
@@ -32,7 +34,7 @@ public class Game implements Serializable{
     void initBoard() {
         int list[] = new int[9 * 16];
         for (int i = 0; i < 9 * 16; i ++) {
-            int value = (int) (Math.round(Math.random() * 100000)) % 36 + 1;
+            int value = (int) (Math.round(Math.random() * 100000)) % Configs.LEVEL + 1;
             list[i++] = value;
             list[i] = value;
         }

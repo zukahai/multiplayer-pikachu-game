@@ -27,6 +27,7 @@ public class GameController extends Thread {
 
     public GameController(Client client, User user) {
         this.gui = new BoadGameGUI();
+        this.gui.userJListCustom.setCurrentUser(user);
         this.client = client;
         // User user = new User(1, "Phan Đức Hải", "HaiZuka", "a", 0, 9);
         // User user2 = new User(2, "Nguyễn Văn Nam", "Nam077", "a", 101, 10);
