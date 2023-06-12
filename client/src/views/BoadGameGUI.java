@@ -4,14 +4,21 @@ import models.User;
 import views.components.UserJListCustom;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import configs.Configs;
+
 import javax.swing.JLabel;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,13 +28,14 @@ public class BoadGameGUI extends JFrame {
 	
 	private JPanel contentPane;
 	public JPanel boardPanel;;
-	private JButton avata1, avata2, avata3, avata4, avata5;
-	public JLabel room_id, leaveRoomLabel;
+	public JLabel room_id, leaveRoomLabel, runLabel;
 	public int Nrow = 9;
 	public int Ncol = 16;
 	public JButton buttons[][] = new JButton[this.Nrow][this.Ncol];
 	public int board[][] = new int[this.Nrow][this.Ncol];
 	public UserJListCustom userJListCustom;
+	public String text = "0123456789";
+	public int indexRunLabel = 0;
 
 	/**
 	 * Launch the application.
@@ -109,14 +117,43 @@ public class BoadGameGUI extends JFrame {
 		leaveRoomLabel.setBounds(940, 510, 40, 40);
 		leaveRoomLabel.setIcon(getImage( "/images/assets/exit.png", 40, 40));
 		contentPane.add(leaveRoomLabel);
+
+		runLabel = new JLabel("abc");
+		runLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		runLabel.setBounds(272, 510, 640, 40);
+		runLabel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, new Color(0, 0, 0)));
+		contentPane.add(runLabel);
+
 		ranking.setBorder(null);
-//		this.updateRanking();
-		
+
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
+		this.setRunLabel("Xin chào HaiZuka, điểm của bạn là 1234. Cảm ơn bạn đã chơi trò chơi Pikachu Mutilplayer");
+
+		Timer timer = new Timer(100, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				indexRunLabel++;
+				if (indexRunLabel > text.length())
+					indexRunLabel = 0;
+				String text = initText(indexRunLabel);
+				runLabel.setText(text);
+			}
+		});
+		timer.start();
 	}
 
+	public String initText(int index) {
+		String textTemp = this.text + " ";
+		String textNew = textTemp.substring(index, textTemp.length());
+		while(textNew.length() < Configs.TEXT_LENGTH)
+			textNew = textNew + textTemp;
+		return textNew;
+	}
+ 
 	public void setBoardFormArray(int board[][]) {
 		this.board = board.clone();
 		for (int i = 0; i < board.length; i++) {
@@ -155,6 +192,10 @@ public class BoadGameGUI extends JFrame {
 		Image image = imageIcon.getImage();
 		Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		return new ImageIcon(newImage);
+	}
+
+	public void setRunLabel(String text) {
+		this.text = text;
 	}
 
 	public int [][] getBoard() {

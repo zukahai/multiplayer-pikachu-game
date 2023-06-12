@@ -3,8 +3,12 @@ package controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
+import configs.Configs;
 import models.Client;
 import models.JoinRoom;
 import models.Step;
@@ -82,6 +86,14 @@ public class GameController extends Thread {
             
             this.gui.setBoardFormArray(this.board);
             this.gui.setRoomIDLable(room_id);
+
+            User user = this.client.getUser();
+
+
+            String textGame = "Xin chào " + user.getName() + ", " 
+            + "Bạn đang ở phòng " + room_id + ". "
+            + Configs.TEXT_HELLO;
+            this.gui.setRunLabel(textGame);
 
             ArrayList<User> users = this.client.getHighScore().getUsers();
             // users.add(new User(1, "Phan Đức Hùng", "HungZuka", "a", 1000, 9));
