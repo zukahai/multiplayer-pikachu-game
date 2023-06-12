@@ -51,7 +51,7 @@ public class BoadGameGUI extends JFrame {
 						users.add(new User(2, "haizuka", "Nguyễn Văn Hải", "user2", 1000, 2));
 						users.add(new User(3, "huyhoang", "Nguyễn Huy Hoàng", "user3", 1000, 3));
 						users.add(new User(4, "pvlong", "Phạm Văn Long", "user4", 1000, 4));
-						users.add(new User(5, "chaubuoi", "Nguyễn Châu Buồi", "user5", 1000, 5));
+						users.add(new User(5, "chauanh", "Nguyễn Châu Anh", "user5", 1000, 5));
 					}
 					users.add(new User(6, "Nguyễn Văn Nam", "namz", "user1", 100, 1));
 					frame.userJListCustom.setCurrentUser(users.get(users.size()-1));

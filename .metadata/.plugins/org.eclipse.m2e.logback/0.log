@@ -207,3 +207,16 @@ Caused by: java.nio.file.NoSuchFileException: G:\Java\pikachu-game\.metadata\.pl
 2023-06-09 20:12:47,750 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory G:\Java\pikachu-game\client\src\main\resources
 2023-06-09 20:12:47,752 [Worker-28: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2023-06-09 20:12:47,752 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory G:\Java\pikachu-game\client\src\test\resources
+2023-06-12 05:16:41,034 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-06-12 05:16:45,423 [Worker-5: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.pikachu:client:0.0.1-SNAPSHOT @ G:\Java\multiplayer-pikachu-game\client\pom.xml.
+2023-06-12 05:16:47,146 [Worker-5: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-06-12 05:16:47,149 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-06-12 05:16:47,159 [Worker-5: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-06-12 05:16:47,161 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory G:\Java\multiplayer-pikachu-game\client\src\test\resources
+2023-06-12 05:16:52,229 [Worker-7: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.pikachu:client:0.0.1-SNAPSHOT @ G:\Java\multiplayer-pikachu-game\client\pom.xml.
+2023-06-12 05:16:52,974 [Worker-7: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.pikachu:server:0.0.1-SNAPSHOT @ G:\Java\multiplayer-pikachu-game\server\pom.xml.
+2023-06-12 05:16:54,446 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-06-12 05:16:54,453 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory G:\Java\multiplayer-pikachu-game\server\src\main\resources
+2023-06-12 05:16:54,458 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-06-12 05:16:54,466 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory G:\Java\multiplayer-pikachu-game\server\src\test\resources
+2023-06-12 05:16:56,215 [Worker-24: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.pikachu:server:0.0.1-SNAPSHOT @ G:\Java\multiplayer-pikachu-game\server\pom.xml.
