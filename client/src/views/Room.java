@@ -65,17 +65,17 @@ public class Room {
         container.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         container.setBackground(new Color(255, 255, 255));
 
-        // Add event listener for roomList (demo)
-        roomList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int index = roomList.locationToIndex(evt.getPoint());
-                if (index >= 0) {
-                    Game game = roomList.getModel().getElementAt(index);
-                    JOptionPane.showConfirmDialog(null, "Join room " + game.getRoomID(), "Join room", JOptionPane.DEFAULT_OPTION);
+        // // Add event listener for roomList (demo)
+        // roomList.addMouseListener(new java.awt.event.MouseAdapter() {
+        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //         int index = roomList.locationToIndex(evt.getPoint());
+        //         if (index >= 0) {
+        //             Game game = roomList.getModel().getElementAt(index);
+        //             JOptionPane.showConfirmDialog(null, "Join room " + game.getRoomID(), "Join room", JOptionPane.DEFAULT_OPTION);
 
-                }
-            }
-        });
+        //         }
+        //     }
+        // });
 
         // Add event listener for searchField (demo)
         searchField.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +126,10 @@ public class Room {
         jFrame.setLocationRelativeTo(null);
         jFrame.setContentPane(getContainer());
         jFrame.setVisible(true);
+    }
+
+    public void setVisible(boolean b) {
+        jFrame.setVisible(b);
     }
 
     public static void main(String[] args) {

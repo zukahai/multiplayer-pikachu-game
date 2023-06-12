@@ -115,6 +115,12 @@ public class PlayerThread extends Thread{
 				} else
 					System.out.println("=============>> FALSE");
 			}
+
+			if (object instanceof ListRoom) {
+				Game rooms[] = Util.cloneArray(Server.rooms);
+				ListRoom listRoom = new ListRoom(rooms);
+				this.writeObjectToClient(this.socket, listRoom);
+			}
 		}
 	}
 
@@ -152,5 +158,4 @@ public class PlayerThread extends Thread{
 	public User getUser() {
 		return user;
 	}
-
 }

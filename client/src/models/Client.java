@@ -87,6 +87,10 @@ public class Client extends Thread {
 	public HighScore getHighScore() {
 		return ((ThreadReadOject)threadReadOject).getHighScore();
 	}
+
+	public ListRoom getListRoom() {
+		return ((ThreadReadOject)threadReadOject).getListRoom();
+	}
 	
 	public static void main(String[] args) {
 		Client client = new Client("localhost", Configs.SERVER_PORT);

@@ -91,6 +91,10 @@ public class Game implements Serializable{
         return this.players;
     }
 
+    public void setPlayers(HashMap<User, Socket> players) {
+        this.players = players;
+    }
+
     public Socket getPlayer(String username) {
         return this.players.get(username);
     }
@@ -115,5 +119,11 @@ public class Game implements Serializable{
         this.roomID = roomID;
     }
 
+    public Game clone() {
+        Game game = new Game();
+        game.setRoomID(roomID);
+        game.setPlayers(players);
+        return game;
+    }
     
 }

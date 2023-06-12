@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.lang.model.type.PrimitiveType;
 
 import models.Client;
+import models.ListRoom;
 import models.User;
 import views.Login;
 
@@ -35,7 +36,10 @@ public class LoginController {
 
                 //Check login
                 User user = new User(0, username.toUpperCase(), username, password, 0, (int)Math.round(1 + 9 * Math.random()));
-                new GameController(client, user);
+                client.writeObjectToServer(user);
+                client.writeObjectToServer(new ListRoom());
+                // new GameController(client);
+                new RoomController(client);
                 loginGUI.setVisible(false);
             }
             

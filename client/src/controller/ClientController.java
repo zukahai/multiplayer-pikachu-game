@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import configs.Configs;
 import models.Client;
+import models.ListRoom;
 import views.AddressIP;
 
 public class ClientController {
@@ -30,7 +31,6 @@ public class ClientController {
             try {
                 client = new Client(ip, Configs.SERVER_PORT);
                 if (client.connect()) {
-                    // JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText());
                     new LoginController(client);
                     //turn off address IP
                     addressIP.setVisible(false);
@@ -43,8 +43,6 @@ public class ClientController {
                 JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText() + " connect failed!");
             }
         });
-        // this.client = new Client(host, Configs.SERVER_PORT);
-        // new GameController(client);
     }
 
 

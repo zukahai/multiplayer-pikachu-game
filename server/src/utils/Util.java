@@ -2,11 +2,16 @@ package utils;
 
 import java.math.BigInteger;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.HashMap;
+
+import models.Game;
+import models.User;
 
 public class Util {
 	public static String getIPv4() {
@@ -67,6 +72,19 @@ public class Util {
             System.out.println();
         }
     }
+
+	public static Game[] cloneArray(Game arr[]) {
+		Game [] newArr = new Game[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			newArr[i] = new Game(i);
+			HashMap<User, Socket> hm = new HashMap<>();
+			for (int j = 0; j < arr[i].getPlayers().size(); j++) {
+				hm.put(new User("username" + j, "a"), null);
+			}
+			newArr[i].setPlayers(hm);
+		}
+		return newArr;
+	}
 	
 
 	public static void main(String[] args) {
