@@ -21,12 +21,9 @@ public class BoadGameGUI extends JFrame {
 
 	
 	private JPanel contentPane;
-	public JPanel boardPanel;
-	private JPanel rank1, rank2, rank3, rank4, rank5;
-	private JLabel name1, name2, name3, name4, name5;
-	private JLabel score1, score2, score3, score4, score5;
+	public JPanel boardPanel;;
 	private JButton avata1, avata2, avata3, avata4, avata5;
-	private JLabel room_id;
+	private JLabel room_id, leaveRoomLabel;
 	public int Nrow = 9;
 	public int Ncol = 16;
 	public JButton buttons[][] = new JButton[this.Nrow][this.Ncol];
@@ -107,6 +104,11 @@ public class BoadGameGUI extends JFrame {
 		room_id.setFont(new Font("Tahoma", Font.BOLD, 15));
 		room_id.setBounds(32, 521, 234, 31);
 		contentPane.add(room_id);
+
+		leaveRoomLabel = new JLabel("Leave Room");
+		leaveRoomLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		leaveRoomLabel.setBounds(880, 521, 234, 31);
+		contentPane.add(leaveRoomLabel);
 		ranking.setBorder(null);
 //		this.updateRanking();
 		
@@ -132,14 +134,6 @@ public class BoadGameGUI extends JFrame {
 	public void setRoomIDLable(int id) {
 		room_id.setText("Room ID: " + id);
 		this.setTitle("Pikachu - Room " + id);
-	}
-	
-	public void updateRanking() {
-		avata1.setIcon(getAvata(1));
-		avata2.setIcon(getAvata(2));
-		avata3.setIcon(getAvata(3));
-		avata4.setIcon(getAvata(4));
-		avata5.setIcon(getAvata(5));
 	}
 	
 	public Icon getIcon(int index) {
