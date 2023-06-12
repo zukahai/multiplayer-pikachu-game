@@ -115,6 +115,17 @@ public class PlayerThread extends Thread{
 				} else
 					System.out.println("=============>> FALSE");
 			}
+
+			if (object instanceof ListRoom) {
+					System.out.println("+++++++++++++++++++++++");
+					// Game rooms[] = new Game[2];
+					// rooms[0] = new Game(1);
+					// rooms[1] = new Game(2);
+					Game rooms[] = Util.cloneArray(Server.rooms);
+
+					ListRoom listRoom = new ListRoom(rooms);
+					this.writeObjectToClient(this.socket, listRoom);
+				}
 		}
 	}
 

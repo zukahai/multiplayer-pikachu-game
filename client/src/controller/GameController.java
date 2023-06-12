@@ -23,7 +23,7 @@ public class GameController extends Thread {
 
     private int indexStep = 1;
 
-    public GameController(Client client) {
+    public GameController(Client client, int roomID) {
         this.gui = new BoadGameGUI();
         this.gui.userJListCustom.setCurrentUser(client.getUser());
         this.client = client;
@@ -31,7 +31,7 @@ public class GameController extends Thread {
         // User user2 = new User(2, "Nguyễn Văn Nam", "Nam077", "a", 101, 10);
         // User user3 = new User(3, "Phan Việt Long", "GonPhan", "a", 101, 5);
         
-        this.client.writeObjectToServer(new JoinRoom("JoinRoom", 68));
+        this.client.writeObjectToServer(new JoinRoom("JoinRoom", roomID));
         this.init();
         this.start();
     }
