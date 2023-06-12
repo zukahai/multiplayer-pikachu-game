@@ -76,6 +76,12 @@ public class Client extends Thread {
 		return roomID;
 	}
 
+	public void leaveRoom() {
+		int roomID = this.getRoomID();
+		LeaveRoom leaveRoom = new LeaveRoom("Leave room", roomID);
+		this.writeObjectToServer(leaveRoom);
+	}
+
 	public User getUser() {
 		return ((ThreadReadOject)threadReadOject).getUser();
 	}

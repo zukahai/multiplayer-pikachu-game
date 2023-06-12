@@ -24,7 +24,7 @@ public class BoadGameGUI extends JFrame {
 	private JPanel contentPane;
 	public JPanel boardPanel;;
 	private JButton avata1, avata2, avata3, avata4, avata5;
-	private JLabel room_id, leaveRoomLabel;
+	public JLabel room_id, leaveRoomLabel;
 	public int Nrow = 9;
 	public int Ncol = 16;
 	public JButton buttons[][] = new JButton[this.Nrow][this.Ncol];
@@ -108,8 +108,8 @@ public class BoadGameGUI extends JFrame {
 
 		leaveRoomLabel = new JLabel();
 		leaveRoomLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		leaveRoomLabel.setBounds(900, 510, 80, 40);
-		leaveRoomLabel.setIcon(getImage( "/images/assets/exit.png", 80, 50));
+		leaveRoomLabel.setBounds(940, 510, 40, 40);
+		leaveRoomLabel.setIcon(getImage( "/images/assets/exit.png", 40, 40));
 		contentPane.add(leaveRoomLabel);
 		ranking.setBorder(null);
 //		this.updateRanking();

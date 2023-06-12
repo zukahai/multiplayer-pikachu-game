@@ -121,6 +121,27 @@ public class PlayerThread extends Thread{
 				ListRoom listRoom = new ListRoom(rooms);
 				this.writeObjectToClient(this.socket, listRoom);
 			}
+
+			if (object instanceof LeaveRoom) {
+				LeaveRoom leaveRoom = (LeaveRoom) object;
+				int roomID = leaveRoom.getRoomID();
+				Server.rooms[roomID].removePlayer(this.user);
+				Server.score[roomID].remove(this.user);
+				System.out.println("Room " + roomID + " leave, Number of player: " + Server.rooms[roomID].getNumberOfPlayers() + " User " + this.user);
+
+				Game rooms[] = Util.cloneArray(Server.rooms);
+				ListRoom listRoom = new ListRoom(rooms);
+				this.writeObjectToClient(this.socket, listRoom);
+
+				//send all player in room
+				ArrayList<User> users = new ArrayList<>();
+				for (User user: Server.score[roomID].keySet()) {
+					user.setScore(Server.score[roomID].get(user));
+					users.add(user);
+				}
+				HighScore hs = new HighScore(users);
+				this.sendAllSocketInRoom(roomID, hs);
+			}
 		}
 	}
 
