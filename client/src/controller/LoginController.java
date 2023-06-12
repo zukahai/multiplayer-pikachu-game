@@ -35,7 +35,8 @@ public class LoginController {
 
                 //Check login
                 User user = new User(0, username.toUpperCase(), username, password, 0, (int)Math.round(1 + 9 * Math.random()));
-                new GameController(client, user);
+                client.writeObjectToServer(user);
+                new GameController(client);
                 loginGUI.setVisible(false);
             }
             
