@@ -1,6 +1,8 @@
 package models;
 
-public class Notification<T> {
+import java.io.Serializable;
+
+public class Notification<T> implements Serializable {
     String message;
     T data;
     boolean success;

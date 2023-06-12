@@ -15,20 +15,20 @@ public class UserService implements DAOInterface<User> {
     private String[] columns = {"id", "name", "username", "password", "score", "id_avatar"};
     private final String table = "users";
 
-    public final String QUERY_CREATE = "INSERT INTO " + table + String.join(", ", columns) + " VALUES (?, ?, ?, ?, ?, ?)";
+    public final String QUERY_CREATE = "INSERT INTO " + table + " (name, username, password, score, id_avatar) VALUES (?, ?, ?, ?, ?)";
     public final String QUERY_FIND_ONE = "SELECT * FROM " + table + " WHERE id = ?";
     public final String QUERY_FIND_ALL = "SELECT * FROM " + table;
     public final String QUERY_UPDATE = "UPDATE " + table + " SET name = ?, username = ?, password = ?, score = ?, id_avatar = ? WHERE id = ?";
     public final String QUERY_DELETE = "DELETE FROM " + table + " WHERE id = ?";
     public final String QUERY_LOGIN = "SELECT * FROM " + table + " WHERE username = ? AND password = ?";
     public final String QUERY_REGISTER = "INSERT INTO " + table + " (name, username, password) VALUES (?, ?, ?)";
+    public final String FIND_BY_USERNAME = "SELECT * FROM " + table + " WHERE username = ?";
+    public final String QUERY_UPDATE_SCORE = "UPDATE " + table + " SET score = ? WHERE id = ?";
 
     public User findByUsername(String username) {
         try {
-
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_LOGIN);
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME);
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 User user = new User();
@@ -58,7 +58,7 @@ public class UserService implements DAOInterface<User> {
 
     @Override
     public Notification<User> create(User data) {
-        if (!checkExistUsername(data.getUsername())) {
+        if (checkExistUsername(data.getUsername())) {
             return new Notification<>("Username is existed", null, false);
         }
         try {
@@ -67,18 +67,19 @@ public class UserService implements DAOInterface<User> {
             preparedStatement.setString(2, data.getUsername());
             preparedStatement.setString(3, Hash.hash(data.getPassword()));
             preparedStatement.setFloat(4, data.getScore());
-            preparedStatement.setInt(5, data.getIdAvatar());
+            preparedStatement.setInt(5, data.getIdAvatar() == 0 ? 1 : data.getIdAvatar());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 data.setId(resultSet.getInt(1));
             }
+            return new Notification<>("Created user successfully", data, true);
 
 
         } catch (Exception e) {
             e.printStackTrace();
+            return new Notification<>("Created user failed", null, false);
         }
-        return null;
 
     }
 
@@ -164,27 +165,41 @@ public class UserService implements DAOInterface<User> {
     }
 
     public Notification<User> register(User user) {
-        if (checkExistUsername(user.getUsername())) {
-            return new Notification<>("Username is existed", null, false);
-        }
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_REGISTER);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, Hash.hash(user.getPassword()));
-            preparedStatement.executeUpdate();
-            return new Notification<>("Register success", null, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Notification<>("Register failed", null, false);
-        }
+        return create(user);
     }
 
     public Notification<User> login(User user) {
         User userByUsername = findByUsername(user.getUsername());
+        System.out.println(user.getUsername());
         if (userByUsername == null || !Hash.compare(user.getPassword(), userByUsername.getPassword())) {
             return new Notification<>("Username or password is wrong", null, false);
         }
         return new Notification<>("Login success", userByUsername, true);
+    }
+
+    public Notification<User> updateScore(int id, float score) {
+        User user = findOne(id);
+        if (user == null) {
+            return new Notification<>("User not found", null, false);
+        }
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE_SCORE);
+            preparedStatement.setFloat(1, score);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Notification<>("Update score failed", null, false);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        UserService userService = new UserService();
+        User user = new User("namz2", "12345");
+        user.setName("Nguyen Anh Minh");
+        System.out.println(userService.register(user));
+        Notification<User> notification = userService.login(user);
+        System.out.println(notification);
     }
 }

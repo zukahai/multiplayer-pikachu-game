@@ -9,12 +9,12 @@ public class UserMigrate {
 
     private Connection connection = ConnectDatabase.getConnection();
     private String QUERY_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + table + " (" +
-            "id INT PRIMARY KEY AUTO_INCREMENT," +
-            "name VARCHAR(255) NOT NULL," +
-            "username VARCHAR(255) NOT NULL," +
-            "password text NOT NULL," +
-            "score FLOAT NOT NULL DEFAULT 0," +
-            "id_avatar INT NOT NULL DEFAULT 1" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "name TEXT NOT NULL," +
+            "username TEXT NOT NULL," +
+            "password TEXT NOT NULL," +
+            "score REAL NOT NULL DEFAULT 0," +
+            "id_avatar INTEGER NOT NULL DEFAULT 1" +
             ")";
 
 
