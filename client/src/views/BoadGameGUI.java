@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BoadGameGUI extends JFrame {
 
@@ -105,9 +106,10 @@ public class BoadGameGUI extends JFrame {
 		room_id.setBounds(32, 521, 234, 31);
 		contentPane.add(room_id);
 
-		leaveRoomLabel = new JLabel("Leave Room");
+		leaveRoomLabel = new JLabel();
 		leaveRoomLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		leaveRoomLabel.setBounds(880, 521, 234, 31);
+		leaveRoomLabel.setBounds(900, 510, 80, 40);
+		leaveRoomLabel.setIcon(getImage( "/images/assets/exit.png", 80, 50));
 		contentPane.add(leaveRoomLabel);
 		ranking.setBorder(null);
 //		this.updateRanking();
@@ -149,6 +151,12 @@ public class BoadGameGUI extends JFrame {
 		Image image = new ImageIcon(getClass().getResource("/images/avatas/" + index + ".png")).getImage();
 		Icon icon = new ImageIcon(image.getScaledInstance(width, height, image.SCALE_SMOOTH));
 		return icon;
+	}
+	public Icon getImage(String path, int width, int height) {
+		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(path)));
+		Image image = imageIcon.getImage();
+		Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		return new ImageIcon(newImage);
 	}
 
 	public int [][] getBoard() {
