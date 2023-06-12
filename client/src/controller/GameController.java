@@ -30,9 +30,9 @@ public class GameController extends Thread {
 
         this.gui.leaveRoomLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gui.setVisible(false);
                 client.leaveRoom();
                 new RoomController(client);
-                gui.setVisible(false);
             }
         });
         

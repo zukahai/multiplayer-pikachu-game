@@ -28,9 +28,9 @@ public class RoomController {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int index = roomGUI.roomList.locationToIndex(evt.getPoint());
                 if (index >= 0) {
-                    
-                    // JOptionPane.showConfirmDialog(null, " " + index, "Join room", JOptionPane.DEFAULT_OPTION);
-                    new GameController(client, index);
+                    Game game = roomGUI.roomList.getSelectedValue();
+                    int roomID = game.getRoomID();
+                    new GameController(client, roomID);
                     roomGUI.setVisible(false);
 
                 }
