@@ -43,8 +43,6 @@ public class ClientController {
                 JOptionPane.showMessageDialog(null, "You entered: " + addressIP.getTextField().getText() + " connect failed!");
             }
         });
-        // this.client = new Client(host, Configs.SERVER_PORT);
-        // new GameController(client);
     }
 
 

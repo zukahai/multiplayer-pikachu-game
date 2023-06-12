@@ -16,5 +16,11 @@ public class Test {
         // Server.score[0].put(user2, 10);
         // Server.score[0].put(user1, 100);
         // System.out.println(Server.score[0].get(user1));
+
+        HashMap<User, Integer> score = new HashMap<>();
+        score.put(new User("abc", "a"), null);
+
+        HashMap<User, Integer> score2 = new HashMap<>(score);
+        System.out.println(score2.size());
     }
 }

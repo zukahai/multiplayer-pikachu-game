@@ -77,8 +77,6 @@ public class Util {
 		Game [] newArr = new Game[arr.length];
 		for (int i = 0; i < arr.length; i++) {
 			newArr[i] = new Game(i);
-			// newArr[i].setPlayers(arr[i].getPlayers());
-			System.out.println("@@@@@@@@@@");
 			HashMap<User, Socket> hm = new HashMap<>();
 			for (int j = 0; j < arr[i].getPlayers().size(); j++) {
 				hm.put(new User("username" + j, "a"), null);
