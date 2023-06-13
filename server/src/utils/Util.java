@@ -135,6 +135,8 @@ public class Util {
 				}
 			}
 		}
+		arr[points.get(0).x][points.get(0).y] += 5000;
+		arr[points.get(1).x][points.get(1).y] += 5000;
 		return arr;
 	}
 
