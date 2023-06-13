@@ -82,7 +82,6 @@ public class GameController extends Thread {
             int room_id = this.client.getRoomID();
             this.step.setRoomID(room_id);
             this.step.setUser(this.client.getUser());
-            this.step.setBoard(board);
             
             this.gui.setBoardFormArray(this.board);
             this.gui.setRoomIDLable(room_id);
@@ -96,11 +95,6 @@ public class GameController extends Thread {
             this.gui.setRunLabel(textGame);
 
             ArrayList<User> users = this.client.getHighScore().getUsers();
-            // users.add(new User(1, "Phan Đức Hùng", "HungZuka", "a", 1000, 9));
-            // users.add(new User(2, "Nguyễn Văn Quang", "Quang077", "a", 729, 10));
-            // users.add(new User(3, "Phan Việt Hùng", "HungPhan", "a", 729, 1));
-            // users.add(new User(4, "Phan Mỹ Linh", "MyLinh", "a", 3729, 2));
-            // users.add(new User(5, "Phan Đức Hiếu", "HieuPC", "a", 1229, 3));
             this.gui.userJListCustom.setUsers(users);
         }
     }

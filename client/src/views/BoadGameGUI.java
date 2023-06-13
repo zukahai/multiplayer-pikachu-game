@@ -131,7 +131,7 @@ public class BoadGameGUI extends JFrame {
 		setVisible(true);
 		this.setRunLabel("Xin chào HaiZuka, điểm của bạn là 1234. Cảm ơn bạn đã chơi trò chơi Pikachu Mutilplayer");
 
-		Timer timer = new Timer(100, new ActionListener() {
+		Timer timer = new Timer(500, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

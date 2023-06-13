@@ -79,7 +79,8 @@ public class PlayerThread extends Thread{
 			if (object instanceof Step) {
 				Step step = (Step) object;
 				System.out.println("Step: " +step);
-				int board[][] = step.getBoard();
+				int roomID = step.getRoomID();
+				int board[][] = Server.rooms[roomID].getBoard();
 
 				//check step
 				if (PikachuAlgorithm.checkStep(board, step.getPosition1(), step.getPosition2())) {
@@ -92,9 +93,7 @@ public class PlayerThread extends Thread{
 
 					// send game to all player
 					Server.rooms[step.getRoomID()].setBoard(board);
-					int roomID = step.getRoomID();
 					this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
-					Util.printArray(step.getBoard());
 					this.sendAllSocketInRoom(step.getRoomID(), this.game);
 					System.out.println("=============>> TRUE");
 
