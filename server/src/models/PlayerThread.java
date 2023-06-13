@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -91,9 +92,23 @@ public class PlayerThread extends Thread{
 					int y2 = step.getPosition2().y;
 					board[x1][y1] = board[x2][y2] = 0;
 
+					//set line
+
+					for (int i = 0; i < board.length; i++) {
+						for (int j = 0; j < board[i].length; j++) {
+							if (board[i][j] > Configs.LEVEL) {
+								board[i][j] = 0;
+							}
+						}
+					}
+
+					for (Point point: PikachuAlgorithm.points) {
+						board[point.x][point.y] = 100;
+					}
+
 					// send game to all player
 					Server.rooms[step.getRoomID()].setBoard(board);
-					this.game = new Game(Server.rooms[roomID].getBoard(), roomID);
+					this.game = new Game(board, roomID);
 					this.sendAllSocketInRoom(step.getRoomID(), this.game);
 					System.out.println("=============>> TRUE");
 
@@ -102,6 +117,7 @@ public class PlayerThread extends Thread{
 					Server.rooms[roomID].subBonus(Configs.SUB_SCORE_BONUS);
 					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + Configs.SCORE + bonus);
 					System.out.println("Score: " + Server.score[roomID].get(this.user) + " Username: " + this.user.getUsername());
+					
 
 					//Update ranking
 					ArrayList<User> users = new ArrayList<>();

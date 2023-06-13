@@ -1,12 +1,19 @@
 package utils;
 
 import java.awt.Point;
+import java.util.ArrayList;
+
+import configs.Configs;
 
 public class PikachuAlgorithm {
     public static int rowMax = 9;
     public static int colMax = 16;
+    public static ArrayList<Point> points = new ArrayList<>();
 
     public static boolean checkStep(int board[][], Point position1, Point position2) {
+        PikachuAlgorithm.points = new ArrayList<>();
+        points.add(position1);
+        points.add(position2);
         if (position1.y > position2.y) {
             Point temp = position1;
             position1 = position2;
@@ -16,6 +23,8 @@ public class PikachuAlgorithm {
         int col1 = position1.y;
         int row2 = position2.x;
         int col2 = position2.y;
+        if (board[row1][col1] > Configs.LEVEL || board[row2][col2] > Configs.LEVEL)
+            return false;
         if (board[row1][col1] == 0 || board[row2][col2] == 0) 
             return false;
         if (row1 == row2 && col1 == col2)

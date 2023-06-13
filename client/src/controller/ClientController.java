@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import configs.Configs;
 import models.Client;
-import models.ListRoom;
 import views.AddressIP;
 
 public class ClientController {

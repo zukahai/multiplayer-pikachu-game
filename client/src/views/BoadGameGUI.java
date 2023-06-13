@@ -144,6 +144,23 @@ public class BoadGameGUI extends JFrame {
 			}
 		});
 		timer.start();
+
+		ArrayList<ArrayList<Point>> listPoints = new ArrayList<ArrayList<Point>>();
+		ArrayList<Point> points = new ArrayList<Point>();
+		points.add(new Point(50, 50));
+		points.add(new Point(200, 200));
+		listPoints.add(points);
+
+		ArrayList<Point> points1 = new ArrayList<Point>();
+		points1.add(new Point(200, 50));
+		points1.add(new Point(200, 300));
+		listPoints.add(points1);
+
+		LineDrawingPanel panel = new LineDrawingPanel(listPoints);
+		panel.setBounds(0, 0, 500, 500);
+		contentPane.add(panel);
+
+
 	}
 
 	public String initText(int index) {
