@@ -1,5 +1,6 @@
 package utils;
 
+import java.awt.Point;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -8,6 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import models.Game;
@@ -84,6 +86,63 @@ public class Util {
 			newArr[i].setPlayers(hm);
 		}
 		return newArr;
+	}
+
+	public static int[][] solveIcon(ArrayList<Point> points) {
+		int icon[] = {100, 200, 400, 700};
+		int pusRow[] = {1, 0, -1, 0};
+		int pusCol[] = {0, -1, 0, 1};
+		int arr[][] = new int[9][16];
+		boolean board[][] = new boolean[9][16];
+		for (Point p : points) {
+			board[p.x][p.y] = true;
+		}
+
+		int indexIconStart = 0;
+		int rowCurrent = points.get(0).x;
+		int colCurrent = points.get(0).y;
+		for (int j = 0; j < pusRow.length; j++) {
+			int rowNext = rowCurrent + pusRow[j];
+			int colNext = colCurrent + pusCol[j];
+			if (checkLocation(rowNext, colNext) && board[rowNext][colNext]) {
+				arr[rowNext][colNext] = icon[j];
+				board[rowNext][colNext] = false;
+				indexIconStart = j + 2;
+				if (indexIconStart >= 4)
+					indexIconStart -= 4;
+				arr[rowCurrent][colCurrent] = icon[indexIconStart];
+				board[rowCurrent][colCurrent] = false;
+				rowCurrent = rowNext;
+				colCurrent = colNext;
+				break;
+			}
+		}
+
+		for (int i = 0; i < points.size(); i++) {
+			for (int j = 0; j < pusRow.length; j++) {
+				int rowNext = rowCurrent + pusRow[j];
+				int colNext = colCurrent + pusCol[j];
+				if (checkLocation(rowNext, colNext) && board[rowNext][colNext]) {
+					arr[rowNext][colNext] = icon[j];
+					indexIconStart = j + 2;
+					board[rowNext][colNext] = false;
+					if (indexIconStart >= 4)
+					indexIconStart -= 4;
+					arr[rowCurrent][colCurrent] += icon[indexIconStart];
+					rowCurrent = rowNext;
+					colCurrent = colNext;
+					break;
+				}
+			}
+		}
+		return arr;
+	}
+
+	public static boolean checkLocation(int x, int y) {
+		if (x >= 0 && x < 9 && y >= 0 && y < 16) {
+			return true;
+		}
+		return false;
 	}
 	
 

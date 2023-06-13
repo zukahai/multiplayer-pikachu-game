@@ -83,6 +83,15 @@ public class PlayerThread extends Thread{
 				int roomID = step.getRoomID();
 				int board[][] = Server.rooms[roomID].getBoard();
 
+				//Convert line to 0
+				for (int i = 0; i < board.length; i++) {
+						for (int j = 0; j < board[i].length; j++) {
+							if (board[i][j] > Configs.LEVEL) {
+								board[i][j] = 0;
+							}
+						}
+					}
+
 				//check step
 				if (PikachuAlgorithm.checkStep(board, step.getPosition1(), step.getPosition2())) {
 					// clear 2 point
@@ -93,17 +102,11 @@ public class PlayerThread extends Thread{
 					board[x1][y1] = board[x2][y2] = 0;
 
 					//set line
-
-					for (int i = 0; i < board.length; i++) {
-						for (int j = 0; j < board[i].length; j++) {
-							if (board[i][j] > Configs.LEVEL) {
-								board[i][j] = 0;
-							}
+					int boardIconLine[][] = Util.solveIcon(PikachuAlgorithm.points);
+					for (int i = 0; i < boardIconLine.length; i++) {
+						for (int j = 0; j < boardIconLine[i].length; j++) {
+							board[i][j] += boardIconLine[i][j];
 						}
-					}
-
-					for (Point point: PikachuAlgorithm.points) {
-						board[point.x][point.y] = 100;
 					}
 
 					// send game to all player
