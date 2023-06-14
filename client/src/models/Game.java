@@ -101,5 +101,16 @@ public class Game implements Serializable{
         game.setPlayers(players);
         return game;
     }
+
+    public boolean isEnd() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] > 0 && board[i][j] <= Configs.MAX_LEVEL) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     
 }

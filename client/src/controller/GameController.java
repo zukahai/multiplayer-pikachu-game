@@ -11,6 +11,8 @@ import java.util.Date;
 import configs.Configs;
 import models.Client;
 import models.JoinRoom;
+import models.ListRoom;
+import models.ResetGame;
 import models.Step;
 import models.User;
 import views.BoadGameGUI;
@@ -86,16 +88,27 @@ public class GameController extends Thread {
             this.gui.setBoardFormArray(this.board);
             this.gui.setRoomIDLable(room_id);
 
+            //set run label
             User user = this.client.getUser();
-
-
             String textGame = "Xin chào " + user.getName() + ", " 
             + "Bạn đang ở phòng " + room_id + ". "
             + Configs.TEXT_HELLO;
             this.gui.setRunLabel(textGame);
 
+            //set ranking to GUI
             ArrayList<User> users = this.client.getHighScore().getUsers();
             this.gui.userJListCustom.setUsers(users);
+
+            // check game
+            if (this.client.getGame().isEnd()) {
+                client.leaveRoom();
+                client.writeObjectToServer(new ResetGame(room_id));
+                client.writeObjectToServer(new ListRoom());
+                // new GameController(client);
+                new RoomController(client);
+                gui.setVisible(false);
+                break;
+            }
         }
     }
 

@@ -9,6 +9,7 @@ public class Configs {
     public static final int SCORE = 100;
     public static final int SCORE_BONUS = 72;
     public static final int SUB_SCORE_BONUS = 2;
+    public static final int MAX_LEVEL = 36;
 
     //View
     public static final int TEXT_LENGTH = 100;

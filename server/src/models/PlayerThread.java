@@ -109,12 +109,6 @@ public class PlayerThread extends Thread{
 						}
 					}
 
-					// send game to all player
-					Server.rooms[step.getRoomID()].setBoard(board);
-					this.game = new Game(board, roomID);
-					this.sendAllSocketInRoom(step.getRoomID(), this.game);
-					System.out.println("=============>> TRUE");
-
 					// update score
 					int bonus = Server.rooms[roomID].getBonus();
 					Server.rooms[roomID].subBonus(Configs.SUB_SCORE_BONUS);
@@ -130,6 +124,14 @@ public class PlayerThread extends Thread{
 					}
 					HighScore hs = new HighScore(users);
 					this.sendAllSocketInRoom(roomID, hs);
+
+					// send game to all player
+					Server.rooms[step.getRoomID()].setBoard(board);
+					this.game = new Game(board, roomID);
+					this.game.setBonus(bonus - Configs.SUB_SCORE_BONUS);
+					this.sendAllSocketInRoom(step.getRoomID(), this.game);
+					System.out.println("=============>> TRUE");
+
 				} else
 					System.out.println("=============>> FALSE");
 			}
@@ -159,6 +161,12 @@ public class PlayerThread extends Thread{
 				}
 				HighScore hs = new HighScore(users);
 				this.sendAllSocketInRoom(roomID, hs);
+			}
+
+			if (object instanceof ResetGame) {
+				ResetGame resetGame = (ResetGame) object;
+				int roomID = resetGame.getRoomID();
+				Server.rooms[roomID] = new Game(roomID);
 			}
 		}
 	}

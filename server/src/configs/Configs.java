@@ -13,6 +13,7 @@ public class Configs {
 
     // Config Game
     public static final int NROOM = 10;
+    public static final int MAX_LEVEL = 36;
     public static final int LEVEL = 10; // 1 -> 36
     public static final int SCORE = 100;
     public static final int SCORE_BONUS = 72;
