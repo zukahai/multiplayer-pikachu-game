@@ -101,8 +101,8 @@ public class GameController extends Thread {
 
             // check game
             if (this.client.getGame().isEnd()) {
+                client.writeObjectToServer(new ResetGame(room_id, this.client.getUser()));
                 client.leaveRoom();
-                client.writeObjectToServer(new ResetGame(room_id));
                 client.writeObjectToServer(new ListRoom());
                 // new GameController(client);
                 new RoomController(client);

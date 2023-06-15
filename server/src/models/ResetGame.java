@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 public class ResetGame implements Serializable{
     private int roomID;
+    private User user;
 
-    public ResetGame(int roomID) {
+    public ResetGame(int roomID, User user) {
         this.roomID = roomID;
+        this.user = user;
     }
 
     public int getRoomID() {
@@ -15,6 +17,14 @@ public class ResetGame implements Serializable{
 
     public void setRoomID(int roomID) {
         this.roomID = roomID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String toString(){

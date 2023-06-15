@@ -55,7 +55,14 @@ public class Game implements Serializable{
                 board[i][j] = list[indexList++];
             }
         }
-        
+        // int board[][] = new int[9][16];
+        // for (int i = 0; i < 9; i++) {
+        //     for (int j = 0; j < 16; j++) {
+        //         board[i][j] = 0;
+        //     }
+        // }
+        // board[0][0] = 1;
+        // board[0][1] = 1;
         this.board = board;
     }
 

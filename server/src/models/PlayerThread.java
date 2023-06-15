@@ -135,8 +135,8 @@ public class PlayerThread extends Thread{
 					// update score
 					int bonus = Server.rooms[roomID].getBonus();
 					Server.rooms[roomID].subBonus(Configs.SUB_SCORE_BONUS);
-					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + Configs.SCORE + bonus);
-					System.out.println("Score: " + Server.score[roomID].get(this.user) + " Username: " + this.user.getUsername());
+					int totalScore = (Configs.SCORE + bonus) * Server.rooms[roomID].getNumberOfPlayers();
+					Server.score[roomID].put(this.user, Server.score[roomID].get(this.user) + totalScore);
 					
 
 					//Update ranking
@@ -188,9 +188,14 @@ public class PlayerThread extends Thread{
 
 			if (object instanceof ResetGame) {
 				ResetGame resetGame = (ResetGame) object;
+				User user = resetGame.getUser();
 				int roomID = resetGame.getRoomID();
+				user.setScore(user.getScore() + Server.score[roomID].get(user));
+				System.out.println("Score: " + user.getScore());
+				userService.updateScore(user.getId(), user.getScore());
 				if (Server.rooms[roomID].isEnd())
 					Server.rooms[roomID] = new Game(roomID);
+				this.writeObjectToClient(this.socket, user);
 			}
 		}
 	}
