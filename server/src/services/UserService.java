@@ -196,8 +196,8 @@ public class UserService implements DAOInterface<User> {
 
     public static void main(String[] args) {
         UserService userService = new UserService();
-        User user = new User("namz2", "12345");
-        user.setName("Nguyen Anh Minh");
+        User user = new User("HaiZuka", "1");
+        user.setName("Phan Đức Hải");
         System.out.println(userService.register(user));
         Notification<User> notification = userService.login(user);
         System.out.println(notification);

@@ -8,7 +8,7 @@ import java.net.Socket;
 public class ThreadReadOject extends Thread {
     private Socket socket = null;
     public Game game = new Game(0);
-    private User user = new User("Guest", "Guest");
+    private User user = null;
     private HighScore hs = new HighScore();
     private ListRoom listRoom;
     

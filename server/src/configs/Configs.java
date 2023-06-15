@@ -10,7 +10,7 @@ public class Configs {
 
     // Config Server
     public static final int SERVER_PORT = 8080;
-
+    
     // Config Game
     public static final int NROOM = 10;
     public static final int MAX_LEVEL = 36;
@@ -18,4 +18,7 @@ public class Configs {
     public static final int SCORE = 100;
     public static final int SCORE_BONUS = 72;
     public static final int SUB_SCORE_BONUS = 1;
+
+    // user
+    public static final int ID_USER_FAILER = -999;
 }

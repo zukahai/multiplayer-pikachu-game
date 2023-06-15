@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 import configs.Configs;
+import services.UserService;
 import utils.PikachuAlgorithm;
 import utils.Util;
 
@@ -21,6 +22,7 @@ public class PlayerThread extends Thread{
 	private Socket socket = null;
 	private User user = new User(LocalTime.now().toString(), "Guest");
 	private Game game = new Game(0);
+	private UserService userService = new UserService();
 	
 	public PlayerThread(Socket socket) {
 		this.socket = socket;
@@ -49,9 +51,17 @@ public class PlayerThread extends Thread{
 			Object object = this.readObjectFromClient();
 			if (object instanceof User) {
 				User user = (User) object;
-				this.user = user;
-				this.writeObjectToClient(this.socket, user);
-				System.out.println("Login success");
+				Notification<User> notification = userService.login(user);
+				if (notification.isSuccess()) {
+					this.user = user;
+					this.writeObjectToClient(this.socket, user);
+					System.out.println("Login success");
+				} else {
+					user.setId(Configs.ID_USER_FAILER);
+					this.writeObjectToClient(this.socket, user);
+					System.out.println("Login fail");
+				}
+				
 			}
 
 			if (object instanceof JoinRoom) {
@@ -166,7 +176,8 @@ public class PlayerThread extends Thread{
 			if (object instanceof ResetGame) {
 				ResetGame resetGame = (ResetGame) object;
 				int roomID = resetGame.getRoomID();
-				Server.rooms[roomID] = new Game(roomID);
+				if (Server.rooms[roomID].isEnd())
+					Server.rooms[roomID] = new Game(roomID);
 			}
 		}
 	}

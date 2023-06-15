@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.lang.model.type.PrimitiveType;
+import javax.swing.JOptionPane;
 
 import models.Client;
 import models.ListRoom;
@@ -37,10 +38,20 @@ public class LoginController {
                 //Check login
                 User user = new User(0, username.toUpperCase(), username, password, 0, (int)Math.round(1 + 9 * Math.random()));
                 client.writeObjectToServer(user);
-                client.writeObjectToServer(new ListRoom());
+
+                while(client.getUser() == null)
+                    System.out.println("wait login " + user.getUsername());
+
+                if (client.getUser().getId() < 0) {
+                    client.setUser(null);
+                    JOptionPane.showMessageDialog(null, "Login fail!");
+                }
+                else {
+                    client.writeObjectToServer(new ListRoom());
                 // new GameController(client);
-                new RoomController(client);
-                loginGUI.setVisible(false);
+                    new RoomController(client);
+                    loginGUI.setVisible(false);
+                }
             }
             
       });
