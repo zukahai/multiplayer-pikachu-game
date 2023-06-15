@@ -119,6 +119,10 @@ public class Room {
         this.roomList.setModel(listModel);
     }
 
+    public void setTitle(String title) {
+        jFrame.setTitle(title);
+    }
+
     public void initFrame() {
         jFrame = new JFrame();
         jFrame.setSize(900, 600);

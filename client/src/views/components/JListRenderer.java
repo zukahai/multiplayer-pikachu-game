@@ -3,6 +3,9 @@ package views.components;
 import models.User;
 
 import javax.swing.*;
+
+import configs.Configs;
+
 import java.awt.*;
 
 public class JListRenderer implements ListCellRenderer<User> {
@@ -68,7 +71,7 @@ public class JListRenderer implements ListCellRenderer<User> {
     }
 
     public Icon getAvatar(int index) {
-        if (index <= 0 || index > 9) {
+        if (index <= 0 || index > Configs.N_AVATA) {
             index = 1;
         }
 

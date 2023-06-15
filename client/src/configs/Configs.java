@@ -15,4 +15,5 @@ public class Configs {
     public static final int TEXT_LENGTH = 100;
     public static final String TEXT_HELLO= "Cảm ơn bạn đã chơi Pikachu Mutilplayer của HaiZuka và Nam077. "
     + "Chúc các bạn chơi game vui vẻ.           ";
+    public static final int N_AVATA = 20;
 }

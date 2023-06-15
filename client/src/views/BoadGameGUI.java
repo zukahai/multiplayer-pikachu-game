@@ -170,7 +170,7 @@ public class BoadGameGUI extends JFrame {
 			textNew = textNew + textTemp;
 		return textNew;
 	}
- 
+
 	public void setBoardFormArray(int board[][]) {
 		this.board = board.clone();
 		for (int i = 0; i < board.length; i++) {
@@ -187,7 +187,7 @@ public class BoadGameGUI extends JFrame {
 
 	public void setRoomIDLable(int id) {
 		room_id.setText("Room ID: " + id);
-		this.setTitle("Pikachu - Room " + id);
+		setTitle("Pikachu - Room " + id);
 	}
 	
 	public Icon getIcon(int index) {

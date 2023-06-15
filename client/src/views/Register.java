@@ -6,6 +6,9 @@ import views.components.CustomTextField;
 import views.components.JComboboxImageCustom;
 
 import javax.swing.*;
+
+import configs.Configs;
+
 import java.awt.*;
 import java.util.Objects;
 
@@ -18,9 +21,9 @@ public class Register {
     public JLabel usernameLabel, passwordLabel, nameLabel, forgetLabel, registerLabel, confirmPasswordLabel, chooseAvatarLabel;
     public CustomJButton registerButton;
 
-    public int avatarIds[] = {1, 2, 3, 4, 5 ,6 ,7 ,8 ,9,10};
+    public int avatarIds[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
-    public Icon icons[] = new Icon[10];
+    public Icon icons[] = new Icon[20];
 
     public JComboboxImageCustom<String> avatarCombobox;
 
@@ -94,7 +97,7 @@ public class Register {
         return container;
     }
     public void setAvatarCombobox() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < icons.length; i++) {
             icons[i] = getAvatar(avatarIds[i]);
         }
     }
@@ -115,7 +118,7 @@ public class Register {
     }
 
     public Icon getAvatar(int index) {
-        if (index <= 0 || index > 9) {
+        if (index <= 0 || index > Configs.N_AVATA) {
             index = 1;
         }
 

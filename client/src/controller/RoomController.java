@@ -20,6 +20,8 @@ public class RoomController {
     public void initalize() {
         roomGUI = new Room();
         roomGUI.initFrame();
+        
+        this.roomGUI.setTitle(client.getUser().getName() + " - Pikachu Mutilplayer");
         ArrayList<Game> games = this.client.getListRoom().getArrayListRoom();
         this.roomGUI.setRoomList(games);
 

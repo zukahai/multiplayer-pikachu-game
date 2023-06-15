@@ -53,12 +53,12 @@ public class PlayerThread extends Thread{
 				User user = (User) object;
 				Notification<User> notification = userService.login(user);
 				if (notification.isSuccess()) {
-					this.user = user;
-					this.writeObjectToClient(this.socket, user);
-					System.out.println("Login success");
+					this.user = notification.getData();
+					this.writeObjectToClient(this.socket, this.user);
+					System.out.println("Login success " + this.user);
 				} else {
-					user.setId(Configs.ID_USER_FAILER);
-					this.writeObjectToClient(this.socket, user);
+					this.user.setId(Configs.ID_USER_FAILER);
+					this.writeObjectToClient(this.socket, this.user);
 					System.out.println("Login fail");
 				}
 				
