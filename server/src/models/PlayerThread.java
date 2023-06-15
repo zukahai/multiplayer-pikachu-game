@@ -61,7 +61,20 @@ public class PlayerThread extends Thread{
 					this.writeObjectToClient(this.socket, this.user);
 					System.out.println("Login fail");
 				}
-				
+			}
+
+			if (object instanceof Register) {
+				Register register = (Register) object;
+				this.user = register.getUser();
+				Notification<User> notification = userService.register(this.user);
+				if (notification.isSuccess()) {
+					System.out.println("Register success " + this.user);
+				} else {
+					user.setId(-999);
+					register.setUser(user);
+					System.out.println("Register fail");
+				}
+				this.writeObjectToClient(this.socket, register);
 			}
 
 			if (object instanceof JoinRoom) {

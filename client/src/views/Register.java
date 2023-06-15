@@ -102,14 +102,17 @@ public class Register {
         }
     }
     public void init() {
-        JFrame frame = new JFrame("Login");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(getContainer());
-        frame.setSize(450, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        jFrame = new JFrame("Login");
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setContentPane(getContainer());
+        jFrame.setSize(450, 700);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setVisible(true);
     }
 
+    public void setVisible(boolean visible) {
+        jFrame.setVisible(visible);
+    }
     public Icon getImage(String path, int width, int height) {
         ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(path)));
         Image image = imageIcon.getImage();

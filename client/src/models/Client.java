@@ -101,6 +101,10 @@ public class Client extends Thread {
 	public ListRoom getListRoom() {
 		return ((ThreadReadOject)threadReadOject).getListRoom();
 	}
+
+	public Register getRegister() {
+		return ((ThreadReadOject)threadReadOject).getRegister();
+	}
 	
 	public static void main(String[] args) {
 		Client client = new Client("localhost", Configs.SERVER_PORT);

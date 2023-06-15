@@ -53,8 +53,14 @@ public class LoginController {
                     loginGUI.setVisible(false);
                 }
             }
-            
       });
+
+      loginGUI.registerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginGUI.setVisible(false);
+                new RegisterController(client);
+            }
+        });
     }
 
     public static void main(String[] args) {

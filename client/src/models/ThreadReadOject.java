@@ -9,6 +9,7 @@ public class ThreadReadOject extends Thread {
     private Socket socket = null;
     public Game game = new Game(0);
     private User user = null;
+    private Register register = new Register();
     private HighScore hs = new HighScore();
     private ListRoom listRoom;
     
@@ -27,6 +28,9 @@ public class ThreadReadOject extends Thread {
             }
             if (object instanceof User) {
                 this.user = (User) object;
+            }
+            if (object instanceof Register) {
+                this.register = (Register) object;
             }
             if (object instanceof HighScore) {
                 this.hs = (HighScore) object;
@@ -84,5 +88,9 @@ public class ThreadReadOject extends Thread {
 
     public void setListRoom(ListRoom listRoom) {
         this.listRoom = listRoom;
+    }
+
+    public Register getRegister() {
+        return this.register;
     }
 }
